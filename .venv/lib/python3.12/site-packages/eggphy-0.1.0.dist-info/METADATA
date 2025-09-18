@@ -3,7 +3,7 @@ Name: eggphy
 Version: 0.1.0
 Summary: Invisible Ink Egg Recipe Phylogeny CLI (minimal scaffold)
 Requires-Python: >=3.9
-Requires-Dist: typer>=0.12
+Requires-Dist: typer[all]>=0.12
 Requires-Dist: pydantic>=2
 Requires-Dist: pandas>=2
 Requires-Dist: numpy>=1.26

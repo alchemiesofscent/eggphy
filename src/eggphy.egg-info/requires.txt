@@ -1,4 +1,4 @@
-typer>=0.12
+typer[all]>=0.12
 pydantic>=2
 pandas>=2
 numpy>=1.26
