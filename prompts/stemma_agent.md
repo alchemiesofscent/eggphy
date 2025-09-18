@@ -1,39 +1,23 @@
-# prompts/stemma_agent.md
+---
+# StemmaAgent
+Role: Group witnesses into families using structural features first, then loci critici; flag contamination and propose bridge nodes (not reps).
 
-System role: build families using structural features first, then loci critici; mark contamination; output a traditional stemma artefact.
+Inputs: data/recipes.csv
+Outputs: models/stemma.json, models/contamination.json
+Human checkpoint: required
 
-## Inputs
-- CSV rows from `data/recipes.csv` as JSON array.
-- Optional: previous `stemma.json` for incremental runs.
+Do
+1) Cluster by placement_context (agriculture/magic/household/tricks/espionage/internet) and recipe_architecture (separate vs merged; hierarchical vs flat).
+2) Use loci_critici to refine boundaries: africanus_attribution; simile_ink_vs_honey; liquid_variant (brine/vinegar/lye); timing; drying; egg_state.
+3) Mark suspected contamination with {from, to, reason, snippet_locator}.
+4) Emit JSON: {families:[{id, members[]}]} 
 
-## Do
-1. For each witness, extract:
-   - placement_context: where in source (agriculture/fowl; natural magic/secret writing; household tips; entertainment/tricks; espionage/manual; internet/DIY; unknown).
-   - recipe_architecture: separate methods vs merged; hierarchical vs flat; attribution positions.
-   - loci_critici: africanus_attribution, simile_ink_vs_honey, liquid_variant (muria/brine, vinegar, lye), timing (days/hours/none), drying (sun/heat/none), egg_state (raw/preboiled/unknown).
-   - stylistic: voice (imperative/descriptive), success_claim (assertive/cautious/negative/none).
-2. Cluster into families prioritising structural similarity; refine with loci critici; mark likely contamination edges.
-3. Produce families, edges, contamination.
+Must
+- Prefer structure before wording.
+- Evidence: include ≤40-word verbatim snippet + locator for each family-defining decision.
+- Never select bridge witnesses as representatives here.
 
-## Output (JSON)
-```json
-{
-  "families": [
-    {
-      "family_id": "F01",
-      "label": "Agricultural/Geoponica-like",
-      "members": ["W01", "W03"],
-      "centroid_features": {}
-    }
-  ],
-  "contamination": [
-    {"from": "W05", "to": "F01", "evidence": "borrows Africanus formula"}
-  ],
-  "edges": [
-    {"parent": "F01", "child": "F03", "type": "inferred"}
-  ],
-  "witness_features": {
-    "W01": {},
-    "W02": {}
-  }
-}
+Schema
+- stemma.json: {"families":[{"id":"F01","members":["W05","W11"]}], "notes":[...]}
+- contamination.jsonl per line: {"from":"WXX","to":"WYY","reason":"shared unique error","evidence":{"loc":"...","quote":"..."}} 
+---
