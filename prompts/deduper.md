@@ -2,7 +2,7 @@
 # Deduper
 Role: Collapse trivial reprints and near-duplicates.
 
-Inputs: data/recipes.csv
+Inputs: data/merged_witnesses.csv (or data/witnesses.csv during testing)
 Outputs: models/dedupe_map.json
 
 Do

@@ -28,7 +28,8 @@ The aim is to reconstruct the transmission history of this recipe tradition by c
 
 ## Current Status
 
-* Dataset: `data/recipes.csv` with \~85 entries (WitnessID, Date, Source, Language, Full\_Text, Translation, URL, Note).
+* Dataset flattened and merged: `data/witnesses.csv` + `data/witness_meta.csv` → `data/merged_witnesses.csv` (WitnessID, Date, Source, Language, Full_Text, Translation, URL, Note, plus meta fields).
+* Chunked inputs for batch processing: `data/chunks/*.csv` (≈10 witnesses per file).
 * Languages: Greek, Latin, German, French, Italian, English.
 * Git repo and environment configured.
 * Recipes grouped in preliminary categories (Geoponica, Porta, Household, Entertainment, Espionage, Internet).
@@ -51,9 +52,9 @@ The aim is to reconstruct the transmission history of this recipe tradition by c
 
 **Outputs:**
 
-* `stemma.json` — family groupings, edges, contamination notes.
-* `dedupe_map.json` — collapsed duplicates.
-* `reps.json` — selected representatives (\~15–20).
+* `models/stemma/*.json` — per-chunk arrays of per-witness diagnostic analyses (structural/ingredients/process/linguistic/relationship/confidence). Optionally merged into `models/stemma.json`.
+* `models/dedupe_map.json` — collapsed duplicates.
+* `models/reps.json` — selected representatives (\~15–20).
 
 ### Phase II — Phylogenetic Analysis
 
@@ -78,9 +79,9 @@ Agents are automated via Codex CLI; human input occurs only at review checkpoint
 
 ### Agents
 
-* **StemmaAgent** — groups witnesses into families using structural + loci critici criteria.
+* **StemmaAgent** — extracts per-witness diagnostic analyses (structural, loci critici, linguistic features, relationship and contamination signals) used to infer families.
 * **Deduper** — collapses direct copies (≥0.98 similarity).
-* **RepSelector** — selects family representatives.
+* **RepSelector** — infers families from Stemma analyses and selects representatives; excludes contamination bridges.
 * **ProcDiscover** — procedural character discovery.
 * **TextDiscover** — textual/paratextual character discovery.
 * **ContextAgent** — contextual data extraction.
@@ -93,9 +94,17 @@ Agents are automated via Codex CLI; human input occurs only at review checkpoint
 ### CLI Pattern
 
 ```
-codex run stemma --in data/recipes.csv --out models/stemma.json
-codex run dedupe --in data/recipes.csv --out models/dedupe_map.json
-codex run reps --in models/stemma.json --out models/reps.json
+# Phase I
+# run over each chunk
+## optional: generate a batch plan + manifest
+eggphy stemma-batch --in data/chunks --out models/stemma --manifest models/stemma_manifest.json --write-sh
+codex run stemma --in data/chunks/<file>.csv --out models/stemma/<file>.json
+codex run dedupe --in data/merged_witnesses.csv --out models/dedupe_map.json
+codex run reps --in models/stemma --out models/reps.json
+## optional: merge all chunk outputs into one file for review
+eggphy merge-stemma --in models/stemma --out models/stemma.json
+
+# Phase II
 codex run discover --engine procedural|textual --in models/reps.json --out models/proposals.jsonl
 codex run synthesize --in models/proposals.jsonl --out models/characters.jsonl
 codex run code --in models/characters.jsonl --out output/matrices/{P,T,C}.csv
@@ -128,8 +137,8 @@ codex run qc --in output --out reports/qc.html
 
 ## Next Steps
 
-1. Run **StemmaAgent** on full dataset.
-2. Review family boundaries; approve representatives.
+1. Run **StemmaAgent** over all files in `data/chunks/` (or a single test chunk for smoke tests).
+2. Review inferred family boundaries; approve representatives.
 3. Launch **ProcDiscover** and **TextDiscover** on reps.
 4. Merge and code characters.
 5. Export matrices and trees.

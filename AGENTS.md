@@ -7,7 +7,8 @@ Operating principles
 1) Evidence-based coding with verbatim snippets and locators. 2) Contamination marked, not erased; bridge witnesses are not representatives. 3) Uncertainty coded as ?. 4) Representatives carry weights for their collapsed family members. 5) Small commits, reproducible runs.
 
 Data layout
-- Input witnesses: data/recipes.csv (or data/witnesses.csv during testing)
+- Input witnesses: data/witnesses.csv + witness_meta.csv (merged as data/merged_witnesses.csv)
+- Chunked inputs for batch runs: data/chunks/*.csv (≈10 witnesses per file)
 - Models and intermediate state: models/
 - Outputs: output/matrices, output/trees, reports/
 - Prompts: prompts/*.md
@@ -19,23 +20,30 @@ Session defaults (Codex)
 
 Agents
 
+StemmaBatch
+Purpose: Orchestrate iterative runs of StemmaAgent over chunked CSVs and track run status.
+Inputs: data/chunks/*.csv, prompts/stemma_agent.md
+Outputs: models/stemma/<chunk>.json, models/stemma_manifest.json
+Prompt: prompts/stemma_batch.md
+Human review: optional (review occurs post-merge)
+
 StemmaAgent
-Purpose: Group witnesses into families using structural features and loci critici; flag contamination.
-Inputs: data/recipes.csv
-Outputs: models/stemma.json, models/contamination.json
+Purpose: Extract per-witness diagnostic analysis (structural, ingredients, process, linguistic, relationship signals) for stemmatic reduction; flag contamination signals.
+Inputs: data/chunks/*.csv (run over each chunk); alternatively data/merged_witnesses.csv for small tests
+Outputs: models/stemma/*.json (JSON array per chunk); optionally merged models/stemma.json
 Prompt: prompts/stemma_agent.md
 Human review: required
 
 Deduper
 Purpose: Collapse near-duplicates and trivial reprints (threshold ~0.98 similarity).
-Inputs: data/recipes.csv
+Inputs: data/merged_witnesses.csv (or data/witnesses.csv during testing)
 Outputs: models/dedupe_map.json
 Prompt: prompts/deduper.md
 Human review: optional
 
 RepSelector
-Purpose: Pick 15–20 representatives per family; exclude contamination bridges as reps.
-Inputs: models/stemma.json, models/dedupe_map.json
+Purpose: Pick 15–20 representatives per family; exclude contamination bridges as reps. Families inferred from StemmaAgent analyses (e.g., structural_variants, ingredients.diagnostic_variants, relationship_analysis).
+Inputs: models/stemma/*.json (or merged models/stemma.json), models/dedupe_map.json
 Outputs: models/reps.json
 Prompt: prompts/rep_selector.md
 Human review: required
@@ -70,7 +78,7 @@ Human review: required
 
 Coder
 Purpose: Apply approved characters to witnesses; attach evidence snippets and locators.
-Inputs: models/characters.jsonl, models/reps.json, data/recipes.csv
+Inputs: models/characters.jsonl, models/reps.json, data/merged_witnesses.csv
 Outputs: output/matrices/P.csv, T.csv, C.csv
 Prompt: prompts/coder.md
 Human review: required
@@ -84,14 +92,14 @@ Human review: optional
 
 TreeBuilder
 Purpose: Build trees with IQ-TREE (MK+ASC) and MrBayes; export NEXUS and logs.
-Inputs: output/matrices/*.nex, models/stemma.json
+Inputs: output/matrices/*.nex (optional: models/stemma*.json for exporting traditional stemma if available)
 Outputs: output/trees/tree_P.nex, tree_T.nex, tree_C.nex, stemma_traditional.nex
 Prompt: prompts/tree_builder.md
 Human review: optional
 
 QCReporter
 Purpose: Summarise uncertainty, contamination, and topology distances; RF metrics and cophylogeny notes.
-Inputs: output/trees, output/matrices, models/contamination.json
+Inputs: output/trees, output/matrices, models/stemma/*.json (derive contamination summary from relationship_analysis)
 Outputs: reports/qc.html
 Prompt: prompts/qc_reporter.md
 Human review: optional
@@ -99,10 +107,11 @@ Human review: optional
 Pipelines
 
 Phase I — stemmatic reduction
-1) codex run stemma --in data/recipes.csv --out models/stemma.json
-2) codex run dedupe --in data/recipes.csv --out models/dedupe_map.json
-3) codex run reps --in models/stemma.json --out models/reps.json
-Checkpoint: review families, contamination flags, and representatives
+0) Optional plan: eggphy stemma-batch --in data/chunks --out models/stemma --manifest models/stemma_manifest.json --write-sh
+1) For each CSV in data/chunks: codex run stemma --in data/chunks/<file>.csv --out models/stemma/<file>.json
+2) codex run dedupe --in data/merged_witnesses.csv --out models/dedupe_map.json
+3) codex run reps --in models/stemma --out models/reps.json
+Checkpoint: review inferred families, contamination flags, and representatives
 
 Phase II — phylogenetic analysis
 4) codex run discover --engine procedural --in models/reps.json --out models/proc_proposals.jsonl
@@ -136,4 +145,3 @@ Review checklist
 Notes for first-time run
 - For a quick smoke test, use the two-row test CSV and run through steps 1–3 and 4, 7, 8, 10, 11
 - Expand to full dataset only after prompts are finalised
-
