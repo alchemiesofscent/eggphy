@@ -1,0 +1,10 @@
+.venv/
+eggphy-venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+.DS_Store
+output/
+reports/
+# keep models JSONL in git; ignore heavy binaries if any
