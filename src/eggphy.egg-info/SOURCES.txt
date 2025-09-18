@@ -1,0 +1,8 @@
+pyproject.toml
+src/eggphy/cli.py
+src/eggphy.egg-info/PKG-INFO
+src/eggphy.egg-info/SOURCES.txt
+src/eggphy.egg-info/dependency_links.txt
+src/eggphy.egg-info/entry_points.txt
+src/eggphy.egg-info/requires.txt
+src/eggphy.egg-info/top_level.txt

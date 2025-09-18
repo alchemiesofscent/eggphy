@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eggphy"
+version = "0.1.0"
+description = "Invisible Ink Egg Recipe Phylogeny CLI (minimal scaffold)"
+requires-python = ">=3.9"
+dependencies = [
+  "typer>=0.12",
+  "pydantic>=2",
+  "pandas>=2",
+  "numpy>=1.26",
+  "tqdm>=4.66"
+]
+
+[project.scripts]
+eggphy = "eggphy.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]

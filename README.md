@@ -1,0 +1,136 @@
+Here’s a full revised `README.md` integrating the automated LLM-agent pipeline, the two-phase strategy (stemmatic reduction + phylogenetic analysis), and your Lachmannian + Raggetti criteria. It strips out the older file-structure references and Claude-specific code, and sets the project up for Codex CLI.
+
+---
+
+# Invisible Ink Egg Recipe Phylogeny Project
+
+## Project Overview
+
+This project analyses \~85 historical recipes (1000 CE–2025) that claim one can write on an eggshell with alum and vinegar such that, when boiled, the inscription appears on the egg white. Despite repeated modern failures (ordinary potassium alum does not work), the recipe persisted for nearly two millennia as a “zombie recipe.”
+
+The aim is to reconstruct the transmission history of this recipe tradition by combining classical stemmatic methods with computational phylogenetics.
+
+## Research Questions
+
+1. How did a non-functional technical recipe transmit across time and cultures?
+2. What patterns of variation reveal distinct families of transmission?
+3. Do procedural and textual features co-vary, or are they subject to different evolutionary pressures?
+4. How do structural and contextual shifts (genre, audience, placement) affect transmission?
+
+## Theoretical Framework
+
+* **Witness-based analysis** (each recipe instance = a witness).
+* **Phase I**: Lachmannian stemmatic reduction, incorporating Raggetti’s criteria for fluid traditions.
+* **Phase II**: Phylogenetic modelling of independent families using procedural, textual, and contextual character matrices.
+* **Comparative topology**: Traditional stemma vs. computational trees.
+
+---
+
+## Current Status
+
+* Dataset: `data/recipes.csv` with \~85 entries (WitnessID, Date, Source, Language, Full\_Text, Translation, URL, Note).
+* Languages: Greek, Latin, German, French, Italian, English.
+* Git repo and environment configured.
+* Recipes grouped in preliminary categories (Geoponica, Porta, Household, Entertainment, Espionage, Internet).
+* Modern replications confirm recipe does not work as described.
+
+---
+
+## Methodology: Two-Phase Strategy
+
+### Phase I — Stemmatic Reduction
+
+**Goal**: Collapse redundant copies, identify families, and select representatives.
+
+**Criteria (Raggetti-inspired):**
+
+1. **Structural features (primary):** recipe position (agriculture, magic, kitchen tips, tricks, espionage), chapter/section migration, clustering with other recipes.
+2. **Meaningful variants (loci critici):** attribution (Africanus/Porta), similes (“thickness of ink” vs. “honey”), liquid choice (brine vs. vinegar vs. lye), processing differences (days vs. hours, drying methods).
+3. **Stylistic formulation (secondary):** imperative vs. descriptive, attributional framing, success claims.
+4. **Exclusionary:** ignore orthographic noise, manuscript age, trivial substitutions.
+
+**Outputs:**
+
+* `stemma.json` — family groupings, edges, contamination notes.
+* `dedupe_map.json` — collapsed duplicates.
+* `reps.json` — selected representatives (\~15–20).
+
+### Phase II — Phylogenetic Analysis
+
+**Goal**: Build parallel trees for procedural, textual, and contextual features, and compare to traditional stemma.
+
+**Steps:**
+
+1. **ProcDiscover**: propose procedural characters (ingredients, ratios, steps).
+2. **TextDiscover**: propose textual/paratextual characters (attributions, similes, claims).
+3. **ContextAgent**: extract strict observable context (book/chapter placement, adjacent recipes, headings).
+4. **Synthesizer**: merge near-duplicates, harmonise state spaces.
+5. **Coder**: apply approved characters across representatives; back-propagate to collapsed members.
+6. **MatrixBuilder**: output three matrices (P.csv, T.csv, C.csv).
+7. **TreeBuilder**: generate `.nex` files; run IQ-TREE (MK+ASC) and MrBayes; produce `tree_P.nex`, `tree_T.nex`, `tree_C.nex`, and `stemma_traditional.nex`.
+8. **QCReporter**: assess uncertainty, contamination, and topology distances.
+
+---
+
+## Agent System (Codex CLI)
+
+Agents are automated via Codex CLI; human input occurs only at review checkpoints.
+
+### Agents
+
+* **StemmaAgent** — groups witnesses into families using structural + loci critici criteria.
+* **Deduper** — collapses direct copies (≥0.98 similarity).
+* **RepSelector** — selects family representatives.
+* **ProcDiscover** — procedural character discovery.
+* **TextDiscover** — textual/paratextual character discovery.
+* **ContextAgent** — contextual data extraction.
+* **Synthesizer** — merges and normalises proposals.
+* **Coder** — systematic coding with evidence snippets.
+* **MatrixBuilder** — builds matrices.
+* **TreeBuilder** — produces trees and topology comparisons.
+* **QCReporter** — reports uncertainty, contamination, missing data.
+
+### CLI Pattern
+
+```
+codex run stemma --in data/recipes.csv --out models/stemma.json
+codex run dedupe --in data/recipes.csv --out models/dedupe_map.json
+codex run reps --in models/stemma.json --out models/reps.json
+codex run discover --engine procedural|textual --in models/reps.json --out models/proposals.jsonl
+codex run synthesize --in models/proposals.jsonl --out models/characters.jsonl
+codex run code --in models/characters.jsonl --out output/matrices/{P,T,C}.csv
+codex run trees --in output/matrices --out output/trees
+codex run qc --in output --out reports/qc.html
+```
+
+---
+
+## Principles
+
+* **Evidence-based coding:** every 1/0/? decision cites verbatim snippet + locator.
+* **Contamination:** marked but not eliminated; bridge witnesses not representatives.
+* **Missing data:** drop witnesses with >40% unknown loci critici + absent context.
+* **Uncertainty:** code as `?` rather than guess.
+* **Weighting:** trees built on family representatives; metadata tracks represented members.
+
+---
+
+## Expected Deliverables
+
+1. **Traditional stemma** (families, representatives, contamination map).
+2. **Three character matrices** (procedural, textual, contextual).
+3. **Four trees**: stemma, procedural, textual, contextual.
+4. **Comparative topology analysis** (RF distances, cophylogeny metrics).
+5. **Transmission map** of recipe families and cross-family borrowings.
+6. **Stability analysis**: core vs. variable features.
+
+---
+
+## Next Steps
+
+1. Run **StemmaAgent** on full dataset.
+2. Review family boundaries; approve representatives.
+3. Launch **ProcDiscover** and **TextDiscover** on reps.
+4. Merge and code characters.
+5. Export matrices and trees.
+6. Compare stemma vs. procedural vs. textual topologies.
