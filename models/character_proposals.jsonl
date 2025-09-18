@@ -1,2 +1,4 @@
 {"engine": "regex", "seed": 42, "batch_size": 8}
 {"engine": "regex", "seed": 1, "batch_size": 2}
+{"engine": "regex", "seed": 1, "batch_size": 8}
+{"engine": "regex", "seed": 1, "batch_size": 12}
