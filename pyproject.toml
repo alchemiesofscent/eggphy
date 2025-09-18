@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Invisible Ink Egg Recipe Phylogeny CLI (minimal scaffold)"
 requires-python = ">=3.9"
 dependencies = [
-  "typer>=0.12",
+  "typer[all]>=0.12",
   "pydantic>=2",
   "pandas>=2",
   "numpy>=1.26",
@@ -20,3 +20,9 @@ eggphy = "eggphy.cli:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q --disable-warnings"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
