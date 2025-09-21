@@ -233,9 +233,23 @@
                     ? Number(recipe.full_data.analysis_confidence.overall_confidence)
                     : undefined;
                 const v = (isFinite(a) ? a : (isFinite(b) ? b : 0));
+
+                // Debug for first few recipes
+                if (recipe.witness_id && ['W01', 'W02', 'W03'].includes(recipe.witness_id)) {
+                    console.log(`Confidence calc for ${recipe.witness_id}:`, {
+                        recipe_confidence: a,
+                        analysis_confidence: b,
+                        final_value: v,
+                        isFinite_v: isFinite(v),
+                        has_full_data: !!recipe.full_data,
+                        has_analysis_confidence: !!(recipe.full_data && recipe.full_data.analysis_confidence)
+                    });
+                }
+
                 if (!isFinite(v)) return 0;
                 return Math.min(Math.max(v, 0), 1);
-            } catch (_) {
+            } catch (err) {
+                console.error('Error in getOverallConfidence:', err);
                 return 0;
             }
         }
@@ -307,20 +321,34 @@
 
         // Transform the detailed JSON structure to the simplified format expected by the web interface
         function transformDataForWeb(data) {
-            return data.map(item => ({
-                witness_id: item.metadata?.witness_id || 'Unknown',
-                date: item.metadata?.date || 0,
-                author: item.metadata?.author || 'Anonymous',
-                language: item.metadata?.language || 'unknown',
-                genre: item.metadata?.genre || 'unknown',
-                source_work: item.metadata?.source_work || 'Unknown Source',
-                ingredients: item.ingredients?.primary_components?.map(c => c.substance) || [],
-                gall_presence: item.ingredients?.diagnostic_variants?.gall_presence || 'unknown',
-                confidence: item.confidence || 0,
-                process_summary: item.process_summary || 'Process details available',
-                attribution: item.attribution || 'unknown',
-                full_data: item // Keep full data for detailed analysis
-            }));
+            return data.map(item => {
+                const transformed = {
+                    witness_id: item.metadata?.witness_id || 'Unknown',
+                    date: item.metadata?.date || 0,
+                    author: item.metadata?.author || 'Anonymous',
+                    language: item.metadata?.language || 'unknown',
+                    genre: item.metadata?.genre || 'unknown',
+                    source_work: item.metadata?.source_work || 'Unknown Source',
+                    ingredients: item.ingredients?.primary_components?.map(c => c.substance) || [],
+                    gall_presence: item.ingredients?.diagnostic_variants?.gall_presence || 'unknown',
+                    confidence: item.confidence || 0,
+                    process_summary: item.process_summary || 'Process details available',
+                    attribution: item.attribution || 'unknown',
+                    full_data: item // Keep full data for detailed analysis
+                };
+
+                // Debug confidence values for first few items
+                if (data.indexOf(item) < 3) {
+                    console.log(`Recipe ${transformed.witness_id}:`, {
+                        raw_confidence: item.confidence,
+                        transformed_confidence: transformed.confidence,
+                        has_analysis_confidence: !!item.analysis_confidence,
+                        overall_confidence: item.analysis_confidence?.overall_confidence
+                    });
+                }
+
+                return transformed;
+            });
         }
 
         function populateCheckboxes() {
@@ -490,6 +518,16 @@
                 const conf = getOverallConfidence(recipe);
                 const hasConf = hasConfidenceData(recipe);
                 const ing = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+
+                // Debug first few recipes
+                if (['W01', 'W02', 'W03'].includes(recipe.witness_id)) {
+                    console.log(`Display ${recipe.witness_id}:`, {
+                        conf,
+                        hasConf,
+                        confPercent: hasConf ? (conf * 100).toFixed(0) : 'n/a',
+                        confWidth: hasConf ? (conf * 100) : 0
+                    });
+                }
                 return `
                 <div class="recipe-card" onclick="showDetails('${recipe.witness_id}')">
                     <div class="recipe-header">
