@@ -278,7 +278,7 @@
 }
 
 .original-text .text-block {
-    font-style: italic;
+    /* Remove italics for better readability */
 }
 
 /* Process Summary */
@@ -662,9 +662,7 @@
         gap: 24px;
     }
 
-    .recipe-right {
-        order: -1; /* Move to top on mobile */
-    }
+    /* Keep desktop layout order - remove mobile reordering */
 
     .related-recipes {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -697,6 +695,11 @@
 
     .text-content {
         gap: 16px;
+    }
+
+    /* Hide source information on mobile since it's in the header */
+    #source-info-section {
+        display: none;
     }
 
     .footer-nav {
