@@ -242,7 +242,7 @@
       "text_length": 489,
       "translation_length": 0
     },
-    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: Scientific explanation is given for the wax method. The vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. The theory is based on porosity. **Analysis**: The 'μέλανος' reading represents the standard Greek tradition with certain attribution to Africanus and complete scientific understanding of the process through porosity theory."
+    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: Mechanism is hinted at for the wax method. The vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. **Analysis**: The 'μέλανος' reading represents the standard Greek tradition with certain attribution to Africanus."
   },
   {
     "metadata": {
@@ -657,7 +657,7 @@
       "text_length": 490,
       "translation_length": 0
     },
-    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: Scientific explanation is given for the wax method. The vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. The theory is based on porosity. **General Note**: The 'μέλιτος' reading is a major variant requiring comparison with other manuscripts. This crucial variant 'πάχος μέλιτος' (thickness of honey) instead of 'πάχος μέλανος' (thickness of black/ink) is likely a scribal error that defines a specific manuscript family."
+    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: Mechanism is hinted at for the wax method. The vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. **General Note**: The 'μέλιτος' reading is a major variant requiring comparison with other manuscripts. This crucial variant 'πάχος μέλιτος' (thickness of honey) instead of 'πάχος μέλανος' (thickness of black/ink) is likely a scribal error that defines a specific manuscript family."
   },
   {
     "metadata": {
@@ -873,7 +873,7 @@
       "text_length": 483,
       "translation_length": 606
     },
-    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: For the wax method, the vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. The theory is based on porosity. **Relationship Analysis**: Shares 'μέλανος' reading with W01 but has modernized grammar not present in W01 or W03, indicating it's a critical edition based on multiple sources or from a different manuscript line."
+    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Ἀφρικανοῦ.\" at the opening. Confidence is certain. **Explanatory Materials**: For the wax method, the vinegar makes the shell under the scratched letters transparent, revealing the mark. Detail level is moderate. **Relationship Analysis**: Shares 'μέλανος' reading with W01 but has modernized grammar not present in W01 or W03, indicating it's a critical edition based on multiple sources or from a different manuscript line."
   },
   {
     "metadata": {
@@ -1133,7 +1133,7 @@
       "text_length": 556,
       "translation_length": 625
     },
-    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Africano sic placuit:\" at the opening. Confidence is certain. Variant is the narrative formula \"sic placuit\" (\"thus it pleased\"). **Explanatory Materials**: Scientific explanation is given for the wax method. After removing the wax you will read the figures of the letters impressed on the egg and the porous shell. Detail level is moderate. The theory is based on porosity. **Relationship Analysis**: Translation markers show the source language is Greek, generation is primary, with parallels in attribution to Africanus, the two-part ink/etch structure, and the core write-soak-boil process. Contamination signals are major: the recipe preserves Greek structure and attribution but omits galls and adds a multi-day soak. This suggests authorial intervention and experimentation, not contamination. Genre adaptation is clear: the text shifts from agricultural/household context to natural magic/secrets literature, adapting the recipe to a context of demonstrating natural wonders. **General Note**: Major deviations from the Greek tradition (omitting galls, extending soak time) raise uncertainty and suggest further investigation into the author's sources or experimental practices. Manual review is required. Confidence levels are high: text completeness, extraction reliability, relationship indicators, and linguistic analysis are all strong."
+    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Africano sic placuit:\" at the opening. Confidence is certain. Variant is the narrative formula \"sic placuit\" (\"thus it pleased\"). **Explanatory Materials**: Mechanism is hinted at for the wax method. After removing the wax you will read the figures of the letters impressed on the egg and the porous shell. Detail level is moderate. The theory is based on porosity. **Relationship Analysis**: Translation markers show the source language is Greek, generation is primary, with parallels in attribution to Africanus, the two-part ink/etch structure, and the core write-soak-boil process. Contamination signals are major: the recipe preserves Greek structure and attribution but omits galls and adds a multi-day soak. This suggests authorial intervention and experimentation, not contamination. Genre adaptation is clear: the text shifts from agricultural/household context to natural magic/secrets literature, adapting the recipe to a context of demonstrating natural wonders. **General Note**: Major deviations from the Greek tradition (omitting galls, extending soak time) raise uncertainty and suggest further investigation into the author's sources or experimental practices. Manual review is required. Confidence levels are high: text completeness, extraction reliability, relationship indicators, and linguistic analysis are all strong."
   },
   {
     "metadata": {
@@ -17939,7 +17939,7 @@
         "content": null
       },
       "scientific_theory": {
-        "porosity_explanation": true,
+        "porosity_explanation": false,
         "chemical_process": false,
         "other_theories": []
       }
@@ -17968,7 +17968,7 @@
         "audience_targeting": []
       }
     },
-    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Di Aphricano.\" at the opening. Confidence is certain. **Explanatory Materials**: For the wax method, you will find the figure of the letters from the vinegar rendered clear and transparent. Detail level is moderate. The theory is based on porosity. **Relationship Analysis**: Translation markers show the source language is latin, generation is primary"
+    "display_notes": "**Attribution**: Source is Africanus. Formula: \"Di Aphricano.\" at the opening. Confidence is certain. **Explanatory Materials**: For the wax method, you will find the figure of the letters from the vinegar rendered clear and transparent. Detail level is moderate. **Relationship Analysis**: Translation markers show the source language is latin, generation is primary"
   },
   {
     "metadata": {
