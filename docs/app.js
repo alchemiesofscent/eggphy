@@ -270,11 +270,17 @@
         async function loadRecipes() {
             try {
                 // Load from GitHub Pages data
+                console.log('Attempting to load data from:', window.location.origin + window.location.pathname + 'data/witnesses.json');
                 const response = await fetch('data/witnesses.json');
+                console.log('Response status:', response.status);
                 if (response.ok) {
                     const data = await response.json();
+                    console.log('Loaded data:', data.length, 'recipes');
                     recipes = transformDataForWeb(data);
+                    console.log('Transformed recipes:', recipes.length);
                     return;
+                } else {
+                    console.error('Response not ok:', response.status, response.statusText);
                 }
             } catch (e) {
                 console.error('Failed to load recipes:', e);

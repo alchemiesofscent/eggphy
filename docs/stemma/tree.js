@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load witness data from the main data file
     let witnessData = [];
     try {
-        const response = await fetch('../../data/witnesses.json');
+        const response = await fetch('../data/witnesses.json');
         if (response.ok) {
             witnessData = await response.json();
         } else {
