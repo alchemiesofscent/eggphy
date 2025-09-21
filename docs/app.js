@@ -529,7 +529,7 @@
                     });
                 }
                 return `
-                <div class="recipe-card" onclick="showDetails('${recipe.witness_id}')">
+                <a href="recipe.html?id=${recipe.witness_id}&from=database" class="recipe-card recipe-card-link">
                     <div class="recipe-header">
                         <div class="recipe-title">${recipe.source_work || 'Historical Recipe'}</div>
                         <div class="recipe-date">${recipe.date} CE</div>
@@ -543,7 +543,7 @@
                         <div class="confidence-label">${hasConf ? (conf * 100).toFixed(0) + '%' : 'n/a'}</div>
                     </div>
                     <div class="witness-id-footer">Witness ID: ${recipe.witness_id}</div>
-                </div>
+                </a>
             `}).join('');
         }
 

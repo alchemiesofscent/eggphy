@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return `
                 <div class="tree-node witness-node" data-witness-id="${witnessId}">
                     <div class="node-content">
-                        <div class="node-info" onclick="showWitnessDetails(event, '${witnessId}')">
+                        <div class="node-info" onclick="window.location.href='../recipe.html?id=${witnessId}&from=stemma'">
                             <div class="family-indicator" style="background: ${familyColorMap[familyId]}"></div>
                             <h5>${sourceWork}</h5>
                             <p class="date">${date}</p>
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 dot.title = `${witness.metadata?.witness_id} (${date})`;
 
                 dot.addEventListener('click', () => {
-                    window.showWitnessDetails(null, witness.metadata?.witness_id);
+                    window.location.href = `../recipe.html?id=${witness.metadata?.witness_id}&from=timeline`;
                 });
                 track.appendChild(dot);
             });

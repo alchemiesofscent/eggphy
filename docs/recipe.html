@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Recipe Details - Historical Egg Writing Recipes</title>
+    <meta name="description" id="page-description" content="Historical egg writing recipe details and analysis">
+    <meta name="keywords" id="page-keywords" content="historical recipes, digital humanities, stemmatology">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" id="og-title" content="Historical Egg Writing Recipe">
+    <meta property="og:description" id="og-description" content="Explore historical egg writing recipe transmission">
+    <meta property="og:type" content="article">
+    <meta property="og:url" id="og-url" content="">
+    <meta property="og:site_name" content="Historical Egg Writing Recipes">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+    <div class="recipe-page">
+        <!-- Header with Navigation -->
+        <header class="recipe-header">
+            <nav class="recipe-nav">
+                <div class="nav-left">
+                    <a href="index.html" class="nav-link" id="back-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back to Database
+                    </a>
+                </div>
+                <div class="nav-center">
+                    <span class="witness-id" id="header-witness-id">Loading...</span>
+                </div>
+                <div class="nav-right">
+                    <button id="prev-recipe" class="nav-btn" title="Previous Recipe">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button id="next-recipe" class="nav-btn" title="Next Recipe">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Loading recipe details...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="error-container hidden">
+            <h2>Recipe Not Found</h2>
+            <p>The requested recipe could not be found.</p>
+            <a href="index.html" class="btn primary">Return to Database</a>
+        </div>
+
+        <!-- Recipe Content -->
+        <main id="recipe-content" class="recipe-main hidden">
+
+            <!-- Hero Section -->
+            <section class="recipe-hero">
+                <div class="hero-content">
+                    <h1 id="recipe-title">Recipe Title</h1>
+                    <div class="recipe-meta">
+                        <span class="meta-item" id="recipe-date">Date</span>
+                        <span class="meta-separator">•</span>
+                        <span class="meta-item" id="recipe-author">Author</span>
+                        <span class="meta-separator">•</span>
+                        <span class="meta-item" id="recipe-language">Language</span>
+                    </div>
+                    <div class="recipe-badges">
+                        <span class="badge family-badge" id="family-badge">Family Classification</span>
+                        <span class="badge confidence-badge" id="confidence-badge">Confidence</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Grid -->
+            <div class="recipe-grid">
+
+                <!-- Left Column: Text & Analysis -->
+                <div class="recipe-left">
+
+                    <!-- Source Information -->
+                    <section class="recipe-section">
+                        <h2>Source Information</h2>
+                        <div class="source-details">
+                            <div class="detail-row">
+                                <label>Source Work:</label>
+                                <span id="source-work">Loading...</span>
+                            </div>
+                            <div class="detail-row">
+                                <label>Genre:</label>
+                                <span id="recipe-genre">Loading...</span>
+                            </div>
+                            <div class="detail-row">
+                                <label>Language:</label>
+                                <span id="language-full">Loading...</span>
+                            </div>
+                            <div class="detail-row" id="url-row">
+                                <label>Digital Source:</label>
+                                <a href="#" id="source-url" target="_blank" rel="noopener">View Original</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Full Text -->
+                    <section class="recipe-section" id="text-section">
+                        <h2>Historical Text</h2>
+                        <div class="text-content">
+                            <div class="original-text" id="original-text">
+                                <h3>Original Text</h3>
+                                <div class="text-block" id="full-text-content">Loading...</div>
+                            </div>
+                            <div class="translation" id="translation-content">
+                                <h3>Translation</h3>
+                                <div class="text-block" id="translation-text">Loading...</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Process Summary -->
+                    <section class="recipe-section">
+                        <h2>Process Summary</h2>
+                        <div class="process-summary" id="process-summary-content">
+                            Loading...
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Right Column: Data & Analysis -->
+                <div class="recipe-right">
+
+                    <!-- Family Classification -->
+                    <section class="recipe-section family-section">
+                        <h2>Stemma Classification</h2>
+                        <div class="family-info" id="family-info">
+                            <div class="family-symbol" id="family-symbol">A</div>
+                            <div class="family-details">
+                                <h3 id="family-name">Family Name</h3>
+                                <p id="family-description">Family description</p>
+                            </div>
+                        </div>
+                        <a href="stemma/tree.html" class="family-link">View in Stemma Tree</a>
+                    </section>
+
+                    <!-- Analysis Confidence -->
+                    <section class="recipe-section">
+                        <h2>Analysis Confidence</h2>
+                        <div class="confidence-display">
+                            <div class="confidence-meter-large">
+                                <div class="confidence-fill-large" id="confidence-fill"></div>
+                                <span class="confidence-text" id="confidence-text">Loading...</span>
+                            </div>
+                            <div class="confidence-details" id="confidence-details">
+                                <p>Loading confidence analysis...</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Ingredients -->
+                    <section class="recipe-section" id="ingredients-section">
+                        <h2>Ingredients</h2>
+                        <div class="ingredients-list" id="ingredients-list">
+                            Loading...
+                        </div>
+                    </section>
+
+                    <!-- Process Steps -->
+                    <section class="recipe-section" id="process-section">
+                        <h2>Process Steps</h2>
+                        <div class="process-steps" id="process-steps-list">
+                            Loading...
+                        </div>
+                    </section>
+
+                    <!-- Diagnostic Variants -->
+                    <section class="recipe-section" id="variants-section">
+                        <h2>Diagnostic Features</h2>
+                        <div class="diagnostic-variants" id="diagnostic-variants">
+                            Loading...
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Related Recipes -->
+            <section class="recipe-section related-section">
+                <h2>Related Recipes</h2>
+                <div class="related-recipes" id="related-recipes">
+                    Loading related recipes...
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer Navigation -->
+        <footer class="recipe-footer">
+            <div class="footer-nav">
+                <button id="footer-prev" class="footer-nav-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    <div class="nav-text">
+                        <small>Previous</small>
+                        <span id="prev-title">Recipe</span>
+                    </div>
+                </button>
+                <div class="footer-center">
+                    <a href="index.html" class="footer-home">Return to Database</a>
+                </div>
+                <button id="footer-next" class="footer-nav-btn">
+                    <div class="nav-text">
+                        <small>Next</small>
+                        <span id="next-title">Recipe</span>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="recipe.js"></script>
+</body>
+</html>

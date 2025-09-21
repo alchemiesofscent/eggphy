@@ -153,6 +153,12 @@ input[type="text"] { width: 260px; }
   box-shadow: var(--shadow-1);
 }
 
+.recipe-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: rgba(10,132,255,0.35); }
 
 .recipe-header { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }

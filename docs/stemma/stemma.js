@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const source = witness.metadata?.source_work || 'Unknown source';
 
             cardEl.innerHTML = `
-                <h3>${witness.metadata?.witness_id || 'Unknown'} (${witness.metadata?.date || 'Unknown date'})</h3>
+                <h3><a href="../recipe.html?id=${witness.metadata?.witness_id}&from=stemma" style="color: inherit; text-decoration: none;">${witness.metadata?.witness_id || 'Unknown'} (${witness.metadata?.date || 'Unknown date'})</a></h3>
                 <p><strong>Author:</strong> ${author}</p>
                 <p><strong>Language:</strong> ${language.toUpperCase()}</p>
                 <p><strong>Source:</strong> ${source}</p>
