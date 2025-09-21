@@ -217,8 +217,9 @@ function populateSourceInfo() {
 
     // Handle URL if available
     const urlRow = document.getElementById('url-row');
-    if (meta.url_available && currentRecipe.url) {
-        document.getElementById('source-url').href = currentRecipe.url;
+    const url = currentRecipe.text_data?.url || currentRecipe.url;
+    if (url && url !== '[URL Missing]') {
+        document.getElementById('source-url').href = url;
         urlRow.style.display = 'flex';
     } else {
         urlRow.style.display = 'none';
@@ -228,19 +229,22 @@ function populateSourceInfo() {
 function populateTextContent() {
     const textSection = document.getElementById('text-section');
     const fullTextContent = document.getElementById('full-text-content');
-    const translationContent = document.getElementById('translation-content');
+    const translationText = document.getElementById('translation-text');
+    const translationSection = document.getElementById('translation-content');
 
-    if (currentRecipe.full_text) {
-        fullTextContent.textContent = currentRecipe.full_text;
+    const fullText = currentRecipe.text_data?.full_text || currentRecipe.full_text;
+    if (fullText) {
+        fullTextContent.textContent = fullText;
     } else {
         fullTextContent.innerHTML = '<em>Original text not available</em>';
     }
 
-    if (currentRecipe.translation) {
-        translationContent.textContent = currentRecipe.translation;
-        document.getElementById('translation-content').style.display = 'block';
+    const translation = currentRecipe.text_data?.translation || currentRecipe.translation;
+    if (translation && translation.trim()) {
+        translationText.textContent = translation;
+        translationSection.style.display = 'block';
     } else {
-        document.getElementById('translation-content').style.display = 'none';
+        translationSection.style.display = 'none';
     }
 }
 
