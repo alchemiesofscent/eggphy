@@ -151,7 +151,6 @@ function displayRecipe(recipeId) {
     populateHeader();
     populateSourceInfo();
     populateTextContent();
-    populateProcessSummary();
     populateFamilyInfo();
     populateConfidence();
     populateIngredients();
@@ -214,6 +213,7 @@ function populateSourceInfo() {
     document.getElementById('source-work').textContent = meta.source_work || 'Unknown Source';
     document.getElementById('recipe-genre').textContent = meta.genre || 'Unknown Genre';
     document.getElementById('language-full').textContent = languageNames[meta.language] || meta.language || 'Unknown';
+    document.getElementById('source-attribution').textContent = currentRecipe.attribution?.source_name || 'Unknown Attribution';
 
     // Handle URL if available
     const urlRow = document.getElementById('url-row');
@@ -248,10 +248,6 @@ function populateTextContent() {
     }
 }
 
-function populateProcessSummary() {
-    const processElement = document.getElementById('process-summary-content');
-    processElement.textContent = currentRecipe.process_summary || 'Process summary not available';
-}
 
 function populateFamilyInfo() {
     const family = classifyRecipe(currentRecipe);
