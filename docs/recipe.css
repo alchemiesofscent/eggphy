@@ -474,6 +474,83 @@
     text-transform: capitalize;
 }
 
+/* Scholarly Notes & Analysis */
+.scholarly-notes-section {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+    border-left: 4px solid var(--accent);
+}
+
+.scholarly-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.note-category {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow-1);
+}
+
+.note-category h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+}
+
+.note-content {
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.note-content p {
+    margin-bottom: 12px;
+}
+
+.note-content p:last-child {
+    margin-bottom: 0;
+}
+
+.note-content strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.note-subsection {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+}
+
+.note-subsection:last-child {
+    margin-bottom: 0;
+}
+
+.note-subsection h4 {
+    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.note-subsection ul {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.note-subsection li {
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
 /* Related Recipes */
 .related-section {
     grid-column: 1 / -1;
