@@ -108,7 +108,11 @@
 
         function setupFilterToggles() {
             document.querySelectorAll('.filter-toggle').forEach(toggle => {
-                toggle.addEventListener('click', () => {
+                // Add both click and touchstart for better mobile support
+                const handleToggle = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
                     const targetId = toggle.getAttribute('data-target');
                     const contentId = targetId.replace('List', 'Content');
                     const content = document.getElementById(contentId);
@@ -130,7 +134,11 @@
                             content.classList.add('expanded');
                         }
                     }
-                });
+                };
+
+                // Add both click and touchstart event listeners
+                toggle.addEventListener('click', handleToggle);
+                toggle.addEventListener('touchstart', handleToggle, { passive: false });
             });
         }
 

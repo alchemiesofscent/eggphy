@@ -544,6 +544,19 @@ html {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
+
+    .filter-toggle {
+      min-height: 44px;
+      padding: 12px 16px;
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .filter-toggle:active {
+      background: var(--surface-2);
+    }
   }
 
   .main {
