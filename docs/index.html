@@ -31,8 +31,21 @@
         </div>
         <p class="subtitle">A Digital Exploration of Historical Witnesses (1000-2025 CE)</p>
 
+        <!-- Mobile Filter Toggle -->
+        <div class="mobile-filter-toggle">
+            <button id="mobileFilterToggle" class="mobile-filter-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+                </svg>
+                <span>Filters & Search</span>
+                <svg class="toggle-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9l6 6 6-6"/>
+                </svg>
+            </button>
+        </div>
+
         <div class="layout">
-            <aside class="sidebar">
+            <aside class="sidebar" id="filterSidebar">
                 <div class="controls">
                     <div class="control-group">
                         <label>Search</label>

@@ -788,5 +788,26 @@
             }
         }
 
+        // Mobile filter toggle functionality
+        function setupMobileFilterToggle() {
+            const toggleBtn = document.getElementById('mobileFilterToggle');
+            const sidebar = document.getElementById('filterSidebar');
+
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', () => {
+                    const isExpanded = sidebar.classList.contains('mobile-expanded');
+
+                    if (isExpanded) {
+                        sidebar.classList.remove('mobile-expanded');
+                        toggleBtn.classList.remove('expanded');
+                    } else {
+                        sidebar.classList.add('mobile-expanded');
+                        toggleBtn.classList.add('expanded');
+                    }
+                });
+            }
+        }
+
+        setupMobileFilterToggle();
         init();
     
