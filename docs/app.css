@@ -508,7 +508,42 @@ html {
   }
 
   .sidebar.mobile-expanded {
-    max-height: 2000px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-1);
+  }
+
+  .sidebar.mobile-expanded .controls {
+    padding: 16px;
+  }
+
+  /* Scroll indicator for mobile filters */
+  .sidebar.mobile-expanded::after {
+    content: '';
+    position: sticky;
+    bottom: 0;
+    height: 20px;
+    background: linear-gradient(transparent, var(--surface));
+    pointer-events: none;
+    display: block;
+  }
+
+  /* Improve filter sections on mobile */
+  @media (max-width: 768px) {
+    .filter-section {
+      margin-bottom: 12px;
+    }
+
+    .filter-content {
+      max-height: 200px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   .main {
