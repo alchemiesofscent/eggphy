@@ -228,11 +228,11 @@
 
         function getOverallConfidence(recipe) {
             try {
-                const a = recipe && typeof recipe.confidence !== 'undefined' ? Number(recipe.confidence) : undefined;
+                const a = recipe && typeof recipe.confidence !== 'undefined' && recipe.confidence !== null && recipe.confidence > 0 ? Number(recipe.confidence) : undefined;
                 const b = recipe && recipe.full_data && recipe.full_data.analysis_confidence && typeof recipe.full_data.analysis_confidence.overall_confidence !== 'undefined'
                     ? Number(recipe.full_data.analysis_confidence.overall_confidence)
                     : undefined;
-                const v = (isFinite(a) ? a : (isFinite(b) ? b : 0));
+                const v = (isFinite(a) && a > 0) ? a : (isFinite(b) ? b : 0);
 
                 // Debug for first few recipes
                 if (recipe.witness_id && ['W01', 'W02', 'W03'].includes(recipe.witness_id)) {
@@ -331,7 +331,7 @@
                     source_work: item.metadata?.source_work || 'Unknown Source',
                     ingredients: item.ingredients?.primary_components?.map(c => c.substance) || [],
                     gall_presence: item.ingredients?.diagnostic_variants?.gall_presence || 'unknown',
-                    confidence: item.confidence || 0,
+                    confidence: item.confidence || item.analysis_confidence?.overall_confidence || 0,
                     process_summary: item.process_summary || 'Process details available',
                     attribution: item.attribution || 'unknown',
                     full_data: item // Keep full data for detailed analysis
