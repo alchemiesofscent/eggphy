@@ -553,12 +553,6 @@
 }
 
 /* Enhanced formatting for display_notes sections */
-.note-content br + strong {
-    display: block;
-    margin-top: 16px;
-    margin-bottom: 8px;
-    color: var(--accent);
-}
 
 .note-subsection {
     margin-bottom: 20px;

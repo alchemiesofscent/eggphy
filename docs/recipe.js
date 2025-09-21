@@ -431,10 +431,10 @@ function populateScholarlyNotes() {
         // Parse and format the display_notes markdown-style content
         let formattedNotes = currentRecipe.display_notes;
 
-        // Convert **text**: pattern to bold headers with line breaks
+        // Convert **text**: pattern to bold headers (inline style)
         formattedNotes = formattedNotes
-            .replace(/\*\*(.*?)\*\*:/g, '<br><strong>$1:</strong>')
-            .replace(/^<br>/, '') // Remove leading line break
+            .replace(/\*\*(.*?)\*\*:/g, '<strong>$1:</strong>')
+            .replace(/\s+<strong>/g, ' <strong>') // Ensure space before sections
             .trim();
 
         // Create a single notes container with the formatted content
