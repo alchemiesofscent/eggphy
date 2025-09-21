@@ -1758,7 +1758,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Hunter",
+      "source_name": "Mr. G. W. Hunter",
       "attribution_formula": "I am indebted to my old friend, Mr. G. W. Hunter, for the secret of this capital little trick.",
       "position": "closing",
       "variants": [],
@@ -1998,7 +1998,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Clive",
+      "source_name": "Paul Clive",
       "attribution_formula": "Paul Clive, the popular English magician, gets the credit for this mystifier.",
       "position": "opening",
       "variants": [],
@@ -3523,7 +3523,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "USDA",
+      "source_name": "US Department of Agriculture",
       "attribution_formula": "the United States Department of Agriculture suggests.",
       "position": "embedded",
       "variants": [],
@@ -4327,7 +4327,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "Book XVI gave numerous recipes for secret ink and for such tricks as writing invisibly on an egg",
       "position": "embedded",
       "variants": [],
@@ -4529,7 +4529,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "In the fifteenth century, the Italian scientist Giovanni Porta described how to conceal a message...",
       "position": "embedded",
       "variants": [
@@ -4758,7 +4758,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "In the fifteenth century Italian scientist Giovanni Porta described...",
       "position": "opening",
       "variants": [
@@ -4922,7 +4922,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "Della Porta’s immensely popular Natural Magic includes advice...",
       "position": "opening",
       "variants": [],
@@ -6864,7 +6864,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Russian revolutionaries",
       "attribution_formula": "Russia used this trick to get messages out of forbidden sections during the early days of the revolution.",
       "position": "embedded",
       "variants": [
@@ -7869,7 +7869,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "wackyuses.com, eggs.ab.ca, etc.",
+      "source_name": "Various (collection)",
       "attribution_formula": "the first from wackyuses.com... Eggs.ab.ca gave a different ratio...",
       "position": "embedded",
       "variants": [],
@@ -8083,7 +8083,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Rita Brandt of Ellison Bay",
       "attribution_formula": "Rita Brandt of Ellison Bay sent directions...",
       "position": "opening",
       "variants": [],
@@ -8275,7 +8275,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "Della Porta invented a method...",
       "position": "opening",
       "variants": [],
@@ -11349,7 +11349,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Artesius",
       "attribution_formula": "Artesii liber de generibus divinationum.",
       "position": "opening",
       "variants": [
@@ -12241,7 +12241,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Clive",
+      "source_name": "Abel Cépak",
       "attribution_formula": "ABEL CÉPAK.",
       "position": "closing",
       "variants": [],
@@ -14027,7 +14027,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "inquit Porta lib. 16. Magiae Naturalis cap. 4.",
       "position": "embedded",
       "variants": [],
@@ -14462,7 +14462,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Africanus; Della Porta",
       "attribution_formula": "iuxta Portam pag. 64.",
       "position": "embedded",
       "variants": [
@@ -15307,7 +15307,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Mr Borges",
       "attribution_formula": "Il s’appelait Mr Borges.",
       "position": "embedded",
       "variants": [],
@@ -16541,7 +16541,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Bernard Newman",
       "attribution_formula": "Bernard Newman",
       "position": "closing",
       "variants": [],
@@ -17401,7 +17401,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "other",
+      "source_name": "Various (collection)",
       "attribution_formula": "“Grandmother’s Way of Decorating Easter Eggs,” New York Sun.",
       "position": "embedded",
       "variants": [],
@@ -18478,7 +18478,7 @@
     },
     "attribution": {
       "presence": true,
-      "source_name": "Porta",
+      "source_name": "Della Porta",
       "attribution_formula": "H. Guſtavus Selenus in Criptogr. fol. 411. ſagt auß Porta",
       "position": "opening",
       "variants": [
