@@ -539,7 +539,7 @@ html {
       margin-bottom: 12px;
     }
 
-    .filter-content {
+    .filter-content.expanded {
       max-height: 200px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;

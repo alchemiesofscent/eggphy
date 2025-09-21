@@ -108,9 +108,8 @@
 
         function setupFilterToggles() {
             document.querySelectorAll('.filter-toggle').forEach(toggle => {
-                // Add both click and touchstart for better mobile support
                 const handleToggle = (e) => {
-                    e.preventDefault();
+                    // Don't prevent default for click events, only stop propagation
                     e.stopPropagation();
 
                     const targetId = toggle.getAttribute('data-target');
@@ -136,9 +135,8 @@
                     }
                 };
 
-                // Add both click and touchstart event listeners
+                // Use a single universal event listener
                 toggle.addEventListener('click', handleToggle);
-                toggle.addEventListener('touchstart', handleToggle, { passive: false });
             });
         }
 
