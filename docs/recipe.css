@@ -521,7 +521,8 @@
 }
 
 .note-content p {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    line-height: 1.6;
 }
 
 .note-content p:last-child {
