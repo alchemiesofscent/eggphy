@@ -417,221 +417,28 @@ function populateRelatedRecipes() {
 
 function populateScholarlyNotes() {
     const scholarlySection = document.getElementById('scholarly-notes-section');
-    let hasContent = false;
+    const scholarlyNotes = document.getElementById('scholarly-notes');
 
-    // 1. Attribution Analysis
-    const attribution = currentRecipe.attribution;
-    const attributionContent = document.getElementById('attribution-content');
-    if (attribution && attribution.presence) {
-        let content = `<p><strong>Source:</strong> ${attribution.source_name || 'Unknown'}</p>`;
-        if (attribution.attribution_formula) {
-            content += `<p><strong>Formula:</strong> "${attribution.attribution_formula}"</p>`;
-        }
-        if (attribution.position) {
-            content += `<p><strong>Position:</strong> ${attribution.position}</p>`;
-        }
-        if (attribution.confidence) {
-            content += `<p><strong>Confidence:</strong> ${Math.round(attribution.confidence * 100)}%</p>`;
-        }
-        if (attribution.variants && attribution.variants.length > 0) {
-            content += `<p><strong>Variants:</strong> ${attribution.variants.join(', ')}</p>`;
-        }
-        attributionContent.innerHTML = content;
-        document.getElementById('attribution-notes').style.display = 'block';
-        hasContent = true;
-    } else {
+    // Check if display_notes field exists
+    if (currentRecipe.display_notes && currentRecipe.display_notes.trim()) {
+        // Hide all individual note categories
         document.getElementById('attribution-notes').style.display = 'none';
-    }
-
-    // 2. Explanatory Materials
-    const explanatory = currentRecipe.explanatory_material;
-    const explanatoryContent = document.getElementById('explanatory-content');
-    let explanatoryHTML = '';
-
-    if (explanatory?.theoretical_explanation?.present) {
-        const theory = explanatory.theoretical_explanation;
-        explanatoryHTML += `<div class="note-subsection">`;
-        explanatoryHTML += `<h4>Scientific Theory</h4>`;
-        explanatoryHTML += `<p><strong>Type:</strong> ${theory.type || 'Unknown'}</p>`;
-        if (theory.content_summary) {
-            explanatoryHTML += `<p><strong>Explanation:</strong> ${theory.content_summary}</p>`;
-        }
-        if (theory.technical_detail_level) {
-            explanatoryHTML += `<p><strong>Detail Level:</strong> ${theory.technical_detail_level}</p>`;
-        }
-        explanatoryHTML += `</div>`;
-    }
-
-    if (explanatory?.performance_notes?.present) {
-        const performance = explanatory.performance_notes;
-        explanatoryHTML += `<div class="note-subsection">`;
-        explanatoryHTML += `<h4>Performance Notes</h4>`;
-        explanatoryHTML += `<p><strong>Type:</strong> ${performance.type || 'Unknown'}</p>`;
-        if (performance.content) {
-            explanatoryHTML += `<p>${performance.content}</p>`;
-        }
-        explanatoryHTML += `</div>`;
-    }
-
-    if (explanatory?.scientific_theory) {
-        const science = explanatory.scientific_theory;
-        explanatoryHTML += `<div class="note-subsection">`;
-        explanatoryHTML += `<h4>Scientific Understanding</h4>`;
-        const theories = [];
-        if (science.porosity_explanation) theories.push('Porosity explanation');
-        if (science.chemical_process) theories.push('Chemical process');
-        if (science.other_theories && science.other_theories.length > 0) {
-            theories.push(...science.other_theories);
-        }
-        if (theories.length > 0) {
-            explanatoryHTML += `<p><strong>Theories:</strong> ${theories.join(', ')}</p>`;
-        }
-        explanatoryHTML += `</div>`;
-    }
-
-    if (explanatoryHTML) {
-        explanatoryContent.innerHTML = explanatoryHTML;
-        document.getElementById('explanatory-notes').style.display = 'block';
-        hasContent = true;
-    } else {
         document.getElementById('explanatory-notes').style.display = 'none';
-    }
-
-    // 3. Relationship Analysis
-    const relationship = currentRecipe.relationship_analysis;
-    const relationshipContent = document.getElementById('relationship-content');
-    let relationshipHTML = '';
-
-    if (relationship) {
-        if (relationship.translation_markers?.source_language_evidence) {
-            relationshipHTML += `<div class="note-subsection">`;
-            relationshipHTML += `<h4>Translation Markers</h4>`;
-            relationshipHTML += `<p><strong>Source Language:</strong> ${relationship.translation_markers.source_language_evidence}</p>`;
-            if (relationship.translation_markers.translation_generation) {
-                relationshipHTML += `<p><strong>Generation:</strong> ${relationship.translation_markers.translation_generation}</p>`;
-            }
-            if (relationship.translation_markers.parallel_translation_indicators?.length > 0) {
-                relationshipHTML += `<p><strong>Parallel Indicators:</strong> ${relationship.translation_markers.parallel_translation_indicators.join(', ')}</p>`;
-            }
-            relationshipHTML += `</div>`;
-        }
-
-        if (relationship.contamination_signals?.anomaly_level !== 'none') {
-            const contamination = relationship.contamination_signals;
-            relationshipHTML += `<div class="note-subsection">`;
-            relationshipHTML += `<h4>Contamination Signals</h4>`;
-            relationshipHTML += `<p><strong>Anomaly Level:</strong> ${contamination.anomaly_level}</p>`;
-            if (contamination.mixed_characteristics?.length > 0) {
-                relationshipHTML += `<p><strong>Mixed Characteristics:</strong> ${contamination.mixed_characteristics.join(', ')}</p>`;
-            }
-            if (contamination.secondary_influence?.length > 0) {
-                relationshipHTML += `<p><strong>Secondary Influences:</strong> ${contamination.secondary_influence.join(', ')}</p>`;
-            }
-            relationshipHTML += `</div>`;
-        }
-
-        if (relationship.genre_adaptation_markers) {
-            const genre = relationship.genre_adaptation_markers;
-            let hasGenreContent = false;
-            let genreHTML = `<div class="note-subsection"><h4>Genre Adaptation</h4>`;
-
-            if (genre.register_shifts?.length > 0) {
-                genreHTML += `<p><strong>Register Shifts:</strong> ${genre.register_shifts.join(', ')}</p>`;
-                hasGenreContent = true;
-            }
-            if (genre.contextual_modifications?.length > 0) {
-                genreHTML += `<p><strong>Contextual Modifications:</strong> ${genre.contextual_modifications.join(', ')}</p>`;
-                hasGenreContent = true;
-            }
-            if (genre.audience_targeting?.length > 0) {
-                genreHTML += `<p><strong>Audience Targeting:</strong> ${genre.audience_targeting.join(', ')}</p>`;
-                hasGenreContent = true;
-            }
-            genreHTML += `</div>`;
-
-            if (hasGenreContent) {
-                relationshipHTML += genreHTML;
-            }
-        }
-    }
-
-    if (relationshipHTML) {
-        relationshipContent.innerHTML = relationshipHTML;
-        document.getElementById('relationship-notes').style.display = 'block';
-        hasContent = true;
-    } else {
         document.getElementById('relationship-notes').style.display = 'none';
-    }
-
-    // 4. Analysis Confidence & Uncertainty
-    const confidence = currentRecipe.analysis_confidence;
-    const confidenceContent = document.getElementById('confidence-notes-content');
-    let confidenceHTML = '';
-
-    if (confidence) {
-        if (confidence.uncertainty_flags && confidence.uncertainty_flags.length > 0) {
-            confidenceHTML += `<div class="note-subsection">`;
-            confidenceHTML += `<h4>Uncertainty Flags</h4>`;
-            confidenceHTML += `<ul>`;
-            confidence.uncertainty_flags.forEach(flag => {
-                confidenceHTML += `<li>${flag}</li>`;
-            });
-            confidenceHTML += `</ul></div>`;
-        }
-
-        if (confidence.requires_manual_review) {
-            confidenceHTML += `<div class="note-subsection">`;
-            confidenceHTML += `<h4>Review Status</h4>`;
-            confidenceHTML += `<p><strong>Requires Manual Review:</strong> Yes</p>`;
-            confidenceHTML += `</div>`;
-        }
-
-        // Show detailed confidence metrics
-        confidenceHTML += `<div class="note-subsection">`;
-        confidenceHTML += `<h4>Confidence Metrics</h4>`;
-        if (confidence.text_completeness !== undefined) {
-            confidenceHTML += `<p><strong>Text Completeness:</strong> ${Math.round(confidence.text_completeness * 100)}%</p>`;
-        }
-        if (confidence.extraction_reliability !== undefined) {
-            confidenceHTML += `<p><strong>Extraction Reliability:</strong> ${Math.round(confidence.extraction_reliability * 100)}%</p>`;
-        }
-        if (confidence.relationship_indicators !== undefined) {
-            confidenceHTML += `<p><strong>Relationship Indicators:</strong> ${Math.round(confidence.relationship_indicators * 100)}%</p>`;
-        }
-        if (confidence.linguistic_analysis !== undefined) {
-            confidenceHTML += `<p><strong>Linguistic Analysis:</strong> ${Math.round(confidence.linguistic_analysis * 100)}%</p>`;
-        }
-        confidenceHTML += `</div>`;
-    }
-
-    if (confidenceHTML) {
-        confidenceContent.innerHTML = confidenceHTML;
-        document.getElementById('confidence-notes').style.display = 'block';
-        hasContent = true;
-    } else {
         document.getElementById('confidence-notes').style.display = 'none';
-    }
-
-    // 5. Editorial Notes
-    const editorialContent = document.getElementById('editorial-content');
-    let editorialHTML = '';
-
-    if (currentRecipe.text_data?.note && currentRecipe.text_data.note.trim()) {
-        editorialHTML += `<p>${currentRecipe.text_data.note}</p>`;
-    }
-
-    if (editorialHTML) {
-        editorialContent.innerHTML = editorialHTML;
-        document.getElementById('editorial-notes').style.display = 'block';
-        hasContent = true;
-    } else {
         document.getElementById('editorial-notes').style.display = 'none';
-    }
 
-    // Show or hide the entire scholarly notes section
-    if (hasContent) {
+        // Create a single notes container with the readable content
+        const notesHTML = `
+            <div class="note-category">
+                <div class="note-content">${currentRecipe.display_notes}</div>
+            </div>
+        `;
+
+        scholarlyNotes.innerHTML = notesHTML;
         scholarlySection.style.display = 'block';
     } else {
+        // Fallback: hide the entire section if no display_notes
         scholarlySection.style.display = 'none';
     }
 }

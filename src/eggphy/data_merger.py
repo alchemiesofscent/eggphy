@@ -374,7 +374,8 @@ def create_enhanced_web_data(
             'has_translation': text_data.get('has_translation', False),
             'text_length': text_data.get('text_length', 0),
             'century': calculate_century(metadata.get('date', 0)),
-            'data_completeness': metadata.get('data_completeness', 'unknown')
+            'data_completeness': metadata.get('data_completeness', 'unknown'),
+            'display_notes': witness.get('display_notes', '')
         }
 
         web_data.append(web_entry)

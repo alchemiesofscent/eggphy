@@ -31,7 +31,7 @@ JSON_FILE = DATA_DIR / "witnesses.json"
 # Structured analysis JSON is now canonical at witnesses.json
 STRUCTURED_JSON_FILE = JSON_FILE
 MERGED_JSON_FILE = JSON_FILE
-WEB_JSON_FILE = DATA_DIR / "witnesses_web.json"
+WEB_JSON_FILE = BASE_DIR / "docs" / "data" / "witnesses.json"
 
 MODELS_DIR = BASE_DIR / "models"
 PROPOSALS = MODELS_DIR / "character_proposals.jsonl"

@@ -279,6 +279,17 @@
 
 .original-text .text-block {
     /* Remove italics for better readability */
+    font-family: 'Literata', serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    white-space: pre-wrap;
 }
 
 /* Process Summary */
@@ -520,6 +531,25 @@
 .note-content strong {
     color: var(--text);
     font-weight: 600;
+}
+
+/* Display notes specific formatting */
+.note-content {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Style for inline bold headers like **Attribution**: */
+.note-content strong[title="section"] {
+    color: var(--accent);
+    font-weight: 700;
+    display: inline-block;
+    margin-top: 16px;
+    margin-bottom: 4px;
+}
+
+.note-content strong:first-child {
+    margin-top: 0;
 }
 
 .note-subsection {
