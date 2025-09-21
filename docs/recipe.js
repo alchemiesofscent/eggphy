@@ -428,10 +428,19 @@ function populateScholarlyNotes() {
         document.getElementById('confidence-notes').style.display = 'none';
         document.getElementById('editorial-notes').style.display = 'none';
 
-        // Create a single notes container with the readable content
+        // Parse and format the display_notes markdown-style content
+        let formattedNotes = currentRecipe.display_notes;
+
+        // Convert **text**: pattern to bold headers with line breaks
+        formattedNotes = formattedNotes
+            .replace(/\*\*(.*?)\*\*:/g, '<br><strong>$1:</strong>')
+            .replace(/^<br>/, '') // Remove leading line break
+            .trim();
+
+        // Create a single notes container with the formatted content
         const notesHTML = `
             <div class="note-category">
-                <div class="note-content">${currentRecipe.display_notes}</div>
+                <div class="note-content">${formattedNotes}</div>
             </div>
         `;
 
