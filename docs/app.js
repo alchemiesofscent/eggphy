@@ -460,6 +460,42 @@
             applyFilters();
         }
 
+        // Comprehensive search function that searches all fields in recipe data
+        function searchAllFields(obj, searchTerm) {
+            if (!obj || !searchTerm) return false;
+
+            searchTerm = searchTerm.toLowerCase();
+
+            // Recursively search through all object properties
+            function searchObject(item) {
+                if (item === null || item === undefined) return false;
+
+                // Handle strings
+                if (typeof item === 'string') {
+                    return item.toLowerCase().includes(searchTerm);
+                }
+
+                // Handle numbers (convert to string for search)
+                if (typeof item === 'number') {
+                    return String(item).includes(searchTerm);
+                }
+
+                // Handle arrays
+                if (Array.isArray(item)) {
+                    return item.some(element => searchObject(element));
+                }
+
+                // Handle objects
+                if (typeof item === 'object') {
+                    return Object.values(item).some(value => searchObject(value));
+                }
+
+                return false;
+            }
+
+            return searchObject(obj);
+        }
+
         function applyFilters() {
             const orderBy = document.getElementById('orderBy').value;
             const search = document.getElementById('searchInput').value.toLowerCase();
@@ -483,12 +519,7 @@
                 const matchesDry = selected.dry.size === 0 || selected.dry.has(String(cv.drying_method || ''));
                 const matchesSoakM = selected.soakMedium.size === 0 || selected.soakMedium.has(String(cv.soaking_medium || ''));
                 const matchesSoakD = selected.soakDuration.size === 0 || selected.soakDuration.has(String(cv.soaking_duration || ''));
-                const matchesSearch = !search || (
-                    (r.author && r.author.toLowerCase().includes(search)) ||
-                    (r.source_work && r.source_work.toLowerCase().includes(search)) ||
-                    (r.process_summary && r.process_summary.toLowerCase().includes(search)) ||
-                    (r.genre && r.genre.toLowerCase().includes(search))
-                );
+                const matchesSearch = !search || searchAllFields(r.full_data || r, search);
                 return matchesCent && matchesLang && matchesGenre && matchesIngredientFamily && matchesIngredient && matchesBoil && matchesDry && matchesSoakM && matchesSoakD && matchesSearch;
             });
 
