@@ -354,7 +354,7 @@ function populateDiagnosticVariants() {
             if (value && value !== 'unknown') {
                 variants.push({
                     feature: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                    value: value.replace(/_/g, ' ')
+                    value: String(value).replace(/_/g, ' ')
                 });
             }
         });
