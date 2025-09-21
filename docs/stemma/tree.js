@@ -3,22 +3,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load witness data from the main data file
     let witnessData = [];
     try {
+        const dataUrl = new URL('../data/witnesses.json', window.location.href).href;
+        console.log('Stemma: Attempting to load data from:', dataUrl);
         const response = await fetch('../data/witnesses.json');
+        console.log('Stemma: Response status:', response.status);
         if (response.ok) {
             witnessData = await response.json();
+            console.log('Stemma: Successfully loaded', witnessData.length, 'witnesses');
         } else {
-            console.error('Failed to load witness data:', response.status);
+            console.error('Stemma: Failed to load witness data:', response.status, response.statusText);
             witnessData = [];
         }
     } catch (error) {
-        console.error('Error loading witness data:', error);
+        console.error('Stemma: Error loading witness data:', error);
+        // Try alternative path
         try {
-            const apiResponse = await fetch('/api/witnesses');
-            if (apiResponse.ok) {
-                witnessData = await apiResponse.json();
+            console.log('Stemma: Trying alternative path: data/witnesses.json');
+            const altResponse = await fetch('data/witnesses.json');
+            if (altResponse.ok) {
+                witnessData = await altResponse.json();
+                console.log('Stemma: Alternative path successful, loaded', witnessData.length, 'witnesses');
+            } else {
+                console.error('Stemma: Alternative path also failed:', altResponse.status);
             }
-        } catch (apiError) {
-            console.error('API fallback also failed:', apiError);
+        } catch (altError) {
+            console.error('Stemma: Alternative path error:', altError);
             witnessData = [];
         }
     }

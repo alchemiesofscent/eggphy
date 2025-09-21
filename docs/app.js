@@ -270,7 +270,8 @@
         async function loadRecipes() {
             try {
                 // Load from GitHub Pages data
-                console.log('Attempting to load data from:', window.location.origin + window.location.pathname + 'data/witnesses.json');
+                const dataUrl = new URL('data/witnesses.json', window.location.href).href;
+                console.log('Attempting to load data from:', dataUrl);
                 const response = await fetch('data/witnesses.json');
                 console.log('Response status:', response.status);
                 if (response.ok) {

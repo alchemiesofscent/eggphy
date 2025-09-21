@@ -13,11 +13,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load witness data from the main data file
     let witnessData = [];
     try {
-        const response = await fetch('../../data/witnesses.json');
+        const dataUrl = new URL('../data/witnesses.json', window.location.href).href;
+        console.log('Stemma Family View: Attempting to load data from:', dataUrl);
+        const response = await fetch('../data/witnesses.json');
+        console.log('Stemma Family View: Response status:', response.status);
         if (response.ok) {
             witnessData = await response.json();
+            console.log('Stemma Family View: Successfully loaded', witnessData.length, 'witnesses');
         } else {
-            console.error('Failed to load witness data:', response.status);
+            console.error('Stemma Family View: Failed to load witness data:', response.status, response.statusText);
             // Fallback to empty array
             witnessData = [];
         }
