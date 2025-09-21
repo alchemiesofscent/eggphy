@@ -12,5 +12,4 @@ Output
 JSONL lines, one per proposed character:
 {"character_id":"P01","label":"Liquid used","states":["vinegar","brine","lye","?"],
  "evidence_refs":[{"witness":"W11","loc":"p.97","quote":"dissolve alum in vinegar"}]}
-
 ---

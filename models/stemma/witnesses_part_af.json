@@ -1,0 +1,211 @@
+[
+  {
+    "witness_id": "W55",
+    "date": 1570,
+    "author": "Charles Estienne",
+    "language": "fra",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W56",
+    "date": 1748,
+    "author": "Wallberg, Johann",
+    "language": "deu",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W57",
+    "date": 1889,
+    "author": "Abel C\u00e9pak",
+    "language": "fra",
+    "genre": "Stage Magic / Popular Tricks",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W58",
+    "date": 1708,
+    "author": "Buggel, Johann Leonhard",
+    "language": "deu",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W59",
+    "date": 1680,
+    "author": "Della Porta, Giambattista",
+    "language": "deu",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W60",
+    "date": 1551,
+    "author": "Constatino IV",
+    "language": "deu",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W61",
+    "date": 1885,
+    "author": "Freisinger Tagblatt",
+    "language": "deu",
+    "genre": "Stage Magic / Popular Tricks",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W62",
+    "date": 1563,
+    "author": "Della Porta",
+    "language": "lat",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W63",
+    "date": 1538,
+    "author": "Cornarius Cassianus, Bassus",
+    "language": "lat",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W64",
+    "date": 1545,
+    "author": "Pierre, Antoine, Cassianus, Bassus",
+    "language": "fra",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W65",
+    "date": 1665,
+    "author": "Schott, Kaspar",
+    "language": "lat",
+    "genre": "Espionage / Cryptography (Manuals)",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  }
+]

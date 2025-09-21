@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stemma Tree View - Egg-Writing Recipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tree.css">
+</head>
+<body>
+    <header>
+        <h1>🌳 Stemma Codicum: Tree & Timeline View</h1>
+        <p>Explore the genealogical relationships and chronological development of the egg-writing recipe tradition.</p>
+        <nav>
+            <a href="stemma.html" class="nav-link">← Family View</a>
+            <a href="../index.html" class="nav-link">Recipe Explorer</a>
+        </nav>
+        <div class="view-controls">
+            <button id="treeViewBtn" class="view-btn active">🌳 Tree View</button>
+            <button id="timelineViewBtn" class="view-btn">📅 Timeline View</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Tree View -->
+        <div id="tree-view" class="view-container">
+            <div class="tree-container">
+                <div class="tree-root">
+                    <div class="tree-node archetype-node" data-node-id="archetype" data-expanded="false">
+                        <div class="node-content">
+                            <div class="expand-indicator">▶</div>
+                            <div class="node-info">
+                                <h3>Ω (Archetype)</h3>
+                                <p>Original Recipe<br><em>c. 1st-3rd century CE</em></p>
+                                <span class="node-count">(loading...)</span>
+                            </div>
+                        </div>
+                        <div class="children-container">
+                            <svg class="connection-svg"></svg>
+                            <div class="children-nodes">
+                                <!-- Family nodes will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline View -->
+        <div id="timeline-view" class="view-container hidden">
+            <div class="timeline-controls">
+                <div class="zoom-controls">
+                    <label>Zoom:</label>
+                    <button id="zoom-out" class="zoom-btn">−</button>
+                    <span id="zoom-level">100%</span>
+                    <button id="zoom-in" class="zoom-btn">+</button>
+                    <button id="zoom-reset" class="zoom-btn">Reset</button>
+                </div>
+                <div class="century-filter">
+                    <label>Time Range:</label>
+                    <input type="range" id="start-year" min="1000" max="2000" value="1000" step="50">
+                    <span id="start-year-label">1000</span>
+                    <span>to</span>
+                    <input type="range" id="end-year" min="1100" max="2025" value="2025" step="50">
+                    <span id="end-year-label">2025</span>
+                </div>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-content">
+                    <div class="timeline-scale">
+                        <!-- Century markers will be generated dynamically -->
+                    </div>
+                    <div class="timeline-families">
+                    <div class="family-lane" data-family="A_Classical">
+                        <div class="family-label">Family A: Classical</div>
+                        <div class="witness-track" id="timeline-family-A"></div>
+                    </div>
+                    <div class="family-lane" data-family="B_LongSoak">
+                        <div class="family-label">Family B: Long-Soak</div>
+                        <div class="witness-track" id="timeline-family-B"></div>
+                    </div>
+                    <div class="family-lane" data-family="C_Modern">
+                        <div class="family-label">Family C: Modern</div>
+                        <div class="witness-track" id="timeline-family-C"></div>
+                    </div>
+                    <div class="family-lane" data-family="D_SaltWaterBoil">
+                        <div class="family-label">Family D: Salt-Water-Boil</div>
+                        <div class="witness-track" id="timeline-family-D"></div>
+                    </div>
+                    <div class="family-lane" data-family="F_Anomalous">
+                        <div class="family-label">Family F: Anomalous</div>
+                        <div class="witness-track" id="timeline-family-F"></div>
+                    </div>
+                    <div class="family-lane" data-family="G_Cepak">
+                        <div class="family-label">Family G: Cépak</div>
+                        <div class="witness-track" id="timeline-family-G"></div>
+                    </div>
+                    <div class="family-lane" data-family="E_Meta">
+                        <div class="family-label">Family E: Meta-Witnesses</div>
+                        <div class="witness-track" id="timeline-family-E"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Witness Details Panel -->
+        <div id="witness-details" class="details-panel hidden">
+            <div class="details-header">
+                <h3 id="details-title">Witness Details</h3>
+                <button id="close-details" class="close-btn">&times;</button>
+            </div>
+            <div id="details-content">
+                <!-- Witness details will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="tree.js"></script>
+</body>
+</html>

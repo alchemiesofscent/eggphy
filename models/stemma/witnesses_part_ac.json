@@ -1,0 +1,211 @@
+[
+  {
+    "witness_id": "W22",
+    "date": 2009,
+    "author": "John A. Nagy",
+    "language": "eng",
+    "genre": "Espionage / Cryptography (History)",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": false,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W23",
+    "date": 2014,
+    "author": "Kristie Macrakis",
+    "language": "eng",
+    "genre": "Espionage / Cryptography (History)",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": false,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W24",
+    "date": 2014,
+    "author": "AMC",
+    "language": "eng",
+    "genre": "Espionage / Cryptography (History)",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": false,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W25",
+    "date": 2014,
+    "author": "Stephanie Bearce",
+    "language": "eng",
+    "genre": "Popular Science",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": false,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W26",
+    "date": 2017,
+    "author": "Sharon",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W27",
+    "date": 2025,
+    "author": "Spy Museum",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W28",
+    "date": 2014,
+    "author": "Egg Farmers of Alberta",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": false,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W29",
+    "date": 2023,
+    "author": "Sinclair McKay",
+    "language": "eng",
+    "genre": "Espionage / Cryptography (History)",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": false,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W30",
+    "date": 2009,
+    "author": "socalchemist",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W31",
+    "date": 2011,
+    "author": "foodiebynature",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W32",
+    "date": 2010,
+    "author": "moreillustrations.com",
+    "language": "eng",
+    "genre": "Modern Internet / DIY / Blogs",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  }
+]

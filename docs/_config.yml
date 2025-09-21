@@ -1,0 +1,56 @@
+title: "Historical Egg Writing Recipes"
+description: "A Digital Archive of Invisible Ink Egg Recipes (1000-2025 CE)"
+url: "https://alchemiesofscent.github.io"
+baseurl: "/eggphy"
+
+# GitHub Pages settings
+github:
+  repository_url: "https://github.com/alchemiesofscent/eggphy"
+
+# SEO and metadata
+author: "Sean Coughlin"
+keywords: "digital humanities, historical recipes, textual transmission, stemmatology, phylogenetics"
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - .git/
+  - .gitignore
+  - README.md
+  - Makefile
+  - "*.py"
+  - src/
+  - prompts/
+  - models/
+
+# Include specific file types
+include:
+  - .htaccess
+  - _pages
+  - assets
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Collections (if needed later)
+collections:
+  recipes:
+    output: false
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

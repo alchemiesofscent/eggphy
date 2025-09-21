@@ -1,0 +1,62 @@
+{
+  "created_at": "2025-09-18T20:47:18.104600Z",
+  "input_dir": "data/chunks",
+  "output_dir": "models/stemma",
+  "skip_existing": true,
+  "chunks": [
+    {
+      "in": "data/chunks/witnesses_part_aa.csv",
+      "out": "models/stemma/witnesses_part_aa.json",
+      "status": "exists",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_aa.csv -p --output-format json > models/stemma/witnesses_part_aa.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ab.csv",
+      "out": "models/stemma/witnesses_part_ab.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ab.csv -p --output-format json > models/stemma/witnesses_part_ab.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ac.csv",
+      "out": "models/stemma/witnesses_part_ac.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ac.csv -p --output-format json > models/stemma/witnesses_part_ac.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ad.csv",
+      "out": "models/stemma/witnesses_part_ad.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ad.csv -p --output-format json > models/stemma/witnesses_part_ad.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ae.csv",
+      "out": "models/stemma/witnesses_part_ae.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ae.csv -p --output-format json > models/stemma/witnesses_part_ae.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_af.csv",
+      "out": "models/stemma/witnesses_part_af.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_af.csv -p --output-format json > models/stemma/witnesses_part_af.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ag.csv",
+      "out": "models/stemma/witnesses_part_ag.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ag.csv -p --output-format json > models/stemma/witnesses_part_ag.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ah.csv",
+      "out": "models/stemma/witnesses_part_ah.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ah.csv -p --output-format json > models/stemma/witnesses_part_ah.json"
+    },
+    {
+      "in": "data/chunks/witnesses_part_ai.csv",
+      "out": "models/stemma/witnesses_part_ai.json",
+      "status": "pending",
+      "cmd": "claude @prompts/stemma_agent.md data/chunks/witnesses_part_ai.csv -p --output-format json > models/stemma/witnesses_part_ai.json"
+    }
+  ]
+}

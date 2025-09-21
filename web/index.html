@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Egg Writing Recipe Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥚 Historical Egg Writing Recipes</h1>
+            <div class="topbar">
+                <div class="toolbar">
+                    <a href="stemma/stemma.html" class="btn nav-btn" title="View Stemma Codicum">
+                        <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                        Stemma
+                    </a>
+                    <button id="themeToggle" class="btn" title="Toggle theme"><svg class="btn-icon"><use href="#icon-sun"/></svg></button>
+                    <button id="fontDec" class="btn" title="Smaller font"><svg class="btn-icon"><use href="#icon-minus"/></svg></button>
+                    <button id="fontInc" class="btn" title="Larger font"><svg class="btn-icon"><use href="#icon-plus"/></svg></button>
+                </div>
+            </div>
+        </div>
+        <p class="subtitle">A Digital Exploration of Historical Witnesses (1000-2025 CE)</p>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Search</label>
+                        <input type="text" id="searchInput" placeholder="Search sources, authors, genres...">
+                    </div>
+                    <div class="control-group">
+                        <label>Order By</label>
+                        <select id="orderBy">
+                            <option value="date_asc">Date ↑</option>
+                            <option value="">Default</option>
+                            <option value="date_desc">Date ↓</option>
+                            <option value="confidence">Confidence</option>
+                            <option value="author">Author</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <button id="resetFilters" class="reset-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M3 21v-5h5"/>
+                            </svg>
+                            Reset All Filters
+                        </button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="centuryList">
+                            <div>
+                                <span class="filter-toggle-text">Centuries</span>
+                                <span class="filter-count" id="centuryCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="centuryContent">
+                            <div id="centuryList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="languageList">
+                            <div>
+                                <span class="filter-toggle-text">Languages</span>
+                                <span class="filter-count" id="languageCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="languageContent">
+                            <div id="languageList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="genreList">
+                            <div>
+                                <span class="filter-toggle-text">Genres</span>
+                                <span class="filter-count" id="genreCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="genreContent">
+                            <div id="genreList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="ingredientFamilyList">
+                            <div>
+                                <span class="filter-toggle-text">Ingredient Family</span>
+                                <span class="filter-count" id="ingredientFamilyCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="ingredientFamilyContent">
+                            <div id="ingredientFamilyList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="ingredientList">
+                            <div>
+                                <span class="filter-toggle-text">Ingredients</span>
+                                <span class="filter-count" id="ingredientCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="ingredientContent">
+                            <div id="ingredientList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Critical variant filters (plain-English display; values use underlying codes) -->
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="boilList">
+                            <div>
+                                <span class="filter-toggle-text">Boiling Timing</span>
+                                <span class="filter-count" id="boilCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="boilContent">
+                            <div id="boilList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="dryList">
+                            <div>
+                                <span class="filter-toggle-text">Drying Method</span>
+                                <span class="filter-count" id="dryCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="dryContent">
+                            <div id="dryList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="soakMediumList">
+                            <div>
+                                <span class="filter-toggle-text">Soaking Medium</span>
+                                <span class="filter-count" id="soakMediumCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="soakMediumContent">
+                            <div id="soakMediumList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-toggle" data-target="soakDurationList">
+                            <div>
+                                <span class="filter-toggle-text">Soaking Duration</span>
+                                <span class="filter-count" id="soakDurationCount">(0 selected)</span>
+                            </div>
+                            <span class="filter-arrow">▼</span>
+                        </div>
+                        <div class="filter-content" id="soakDurationContent">
+                            <div id="soakDurationList" class="checkbox-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <main class="main">
+                <div class="stats" id="stats">Showing: <span id="resultCount">0</span> recipes</div>
+                <div class="recipe-grid" id="recipeGrid"></div>
+            </main>
+        </div>
+
+        <div id="recipeModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline icon sprite -->
+    <svg width="0" height="0" style="position:absolute;visibility:hidden">
+        <symbol id="icon-sun" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0l1.79-1.8 1.41 1.41-1.8 1.79-1.4-1.4zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.42 1.42-1.79-1.8 1.41-1.41 1.8 1.79zm10.48 0l1.4 1.4 1.8-1.79-1.41-1.41-1.79 1.8zM12 8a4 4 0 100 8 4 4 0 000-8z"/></symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.742 13.045A8 8 0 1111 3a9 9 0 109.742 10.045z"/></symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></symbol>
+        <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 11h14v2H5z"/></symbol>
+        <symbol id="icon-left" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></symbol>
+        <symbol id="icon-right" viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></symbol>
+    </svg>
+
+    <script src="/app.js"></script>
+</body>
+</html>

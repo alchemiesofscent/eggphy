@@ -1,7 +1,7 @@
-# AGENTS.md — Eggphy (Codex CLI)
+# AGENTS.md — Eggphy (Claude Code)
 
 Project aim
-Reconstruct the transmission of the invisible-ink egg recipe via a two-phase workflow: stemmatic reduction followed by phylogenetic analysis. Agents are orchestrated by Codex CLI; humans review at checkpoints.
+Reconstruct the transmission of the invisible-ink egg recipe via a two-phase workflow: stemmatic reduction followed by phylogenetic analysis. Agents are orchestrated by Claude Code; humans review at checkpoints.
 
 Operating principles
 1) Evidence-based coding with verbatim snippets and locators. 2) Contamination marked, not erased; bridge witnesses are not representatives. 3) Uncertainty coded as ?. 4) Representatives carry weights for their collapsed family members. 5) Small commits, reproducible runs.
@@ -13,9 +13,8 @@ Data layout
 - Outputs: output/matrices, output/trees, reports/
 - Prompts: prompts/*.md
 
-Session defaults (Codex)
-- model: gpt-5-codex
-- reasoning: medium
+Session defaults (Claude Code)
+- model: claude-3.5-sonnet
 - approvals: file write, create, and read require confirmation; listing and dry runs allowed
 
 Agents
@@ -104,24 +103,27 @@ Outputs: reports/qc.html
 Prompt: prompts/qc_reporter.md
 Human review: optional
 
+Command invocations
+- For up-to-date exec-style commands, see README “Command Map”.
+
 Pipelines
 
 Phase I — stemmatic reduction
 0) Optional plan: eggphy stemma-batch --in data/chunks --out models/stemma --manifest models/stemma_manifest.json --write-sh
-1) For each CSV in data/chunks: codex run stemma --in data/chunks/<file>.csv --out models/stemma/<file>.json
-2) codex run dedupe --in data/merged_witnesses.csv --out models/dedupe_map.json
-3) codex run reps --in models/stemma --out models/reps.json
+1) For each CSV in data/chunks: claude-code @prompts/stemma_agent.md --in data/chunks/<file>.csv --out models/stemma/<file>.json
+2) claude-code @prompts/deduper.md --in data/merged_witnesses.csv --out models/dedupe_map.json
+3) claude-code @prompts/rep_selector.md --in models/stemma --out models/reps.json
 Checkpoint: review inferred families, contamination flags, and representatives
 
 Phase II — phylogenetic analysis
-4) codex run discover --engine procedural --in models/reps.json --out models/proc_proposals.jsonl
-5) codex run discover --engine textual --in models/reps.json --out models/text_proposals.jsonl
-6) codex run context --in models/reps.json --out models/context_proposals.jsonl
-7) codex run synthesize --in models --out models/characters.jsonl
-8) codex run code --in models/characters.jsonl --out output/matrices
-9) codex run matrices --in output/matrices --out output/matrices
-10) codex run trees --in output/matrices --out output/trees
-11) codex run qc --in output --out reports/qc.html
+4) claude-code @prompts/proc_discover.md --in models/reps.json --out models/proc_proposals.jsonl
+5) claude-code @prompts/text_discover.md --in models/reps.json --out models/text_proposals.jsonl
+6) claude-code @prompts/context_agent.md --in models/reps.json --out models/context_proposals.jsonl
+7) claude-code @prompts/synthesizer.md --in models --out models/characters.jsonl
+8) claude-code @prompts/coder.md --in models/characters.jsonl --out output/matrices
+9) claude-code @prompts/matrix_builder.md --in output/matrices --out output/matrices
+10) claude-code @prompts/tree_builder.md --in output/matrices --out output/trees
+11) claude-code @prompts/qc_reporter.md --in output --out reports/qc.html
 Checkpoint: approve character set, coding, matrices, and tree builds
 
 Approvals policy

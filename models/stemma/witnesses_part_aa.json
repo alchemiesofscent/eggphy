@@ -1,0 +1,192 @@
+[
+  {
+    "witness_id": "W01",
+    "date": 1000,
+    "author": "Geoponica F, Laur. Plut. 59.32, De agricultura e diversis auctoribus.",
+    "language": "grk",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W02",
+    "date": 1200,
+    "author": "Geoponica M",
+    "language": "grk",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": false,
+      "vinegar_mentioned": false,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": false,
+      "drying_mentioned": false,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W03",
+    "date": 1539,
+    "author": "Geoponica 14.10 [Print edition: Cassianus, Bassus: Ge\u014dponika Basileae : Winter 1539]",
+    "language": "grk",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W04",
+    "date": 1895,
+    "author": "Geoponica 14.10 [Beckh ed. Geoponica sive Cassiani Bassi scholastici De re rustica eclogae, Leipzig: Tueber, 1895, p.417,9-18]",
+    "language": "grk",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W05",
+    "date": 1558,
+    "author": "",
+    "language": "lat",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W06",
+    "date": 1589,
+    "author": "Della Porta",
+    "language": "lat",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": true,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W07",
+    "date": 1903,
+    "author": "Thurston",
+    "language": "eng",
+    "genre": "Stage Magic / Popular Tricks",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W08",
+    "date": 1935,
+    "author": "Goldston",
+    "language": "eng",
+    "genre": "Stage Magic / Popular Tricks",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W09",
+    "date": 1950,
+    "author": "Scarne",
+    "language": "eng",
+    "genre": "Stage Magic / Popular Tricks",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W10",
+    "date": 1929,
+    "author": "Henley's",
+    "language": "eng",
+    "genre": "Encyclopaedia / General Reference",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  }
+]

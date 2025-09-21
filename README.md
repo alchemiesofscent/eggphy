@@ -73,9 +73,9 @@ The aim is to reconstruct the transmission history of this recipe tradition by c
 
 ---
 
-## Agent System (Codex CLI)
+## Agent System (Claude Code)
 
-Agents are automated via Codex CLI; human input occurs only at review checkpoints.
+Agents are automated via Claude Code; human input occurs only at review checkpoints.
 
 ### Agents
 
@@ -98,19 +98,36 @@ Agents are automated via Codex CLI; human input occurs only at review checkpoint
 # run over each chunk
 ## optional: generate a batch plan + manifest
 eggphy stemma-batch --in data/chunks --out models/stemma --manifest models/stemma_manifest.json --write-sh
-codex run stemma --in data/chunks/<file>.csv --out models/stemma/<file>.json
-codex run dedupe --in data/merged_witnesses.csv --out models/dedupe_map.json
-codex run reps --in models/stemma --out models/reps.json
+# then run the generated commands in models/stemma_manifest.sh
+claude-code @prompts/deduper.md --in data/merged_witnesses.csv --out models/dedupe_map.json
+claude-code @prompts/rep_selector.md --in models/stemma --out models/reps.json
 ## optional: merge all chunk outputs into one file for review
 eggphy merge-stemma --in models/stemma --out models/stemma.json
 
 # Phase II
-codex run discover --engine procedural|textual --in models/reps.json --out models/proposals.jsonl
-codex run synthesize --in models/proposals.jsonl --out models/characters.jsonl
-codex run code --in models/characters.jsonl --out output/matrices/{P,T,C}.csv
-codex run trees --in output/matrices --out output/trees
-codex run qc --in output --out reports/qc.html
+claude-code @prompts/proc_discover.md --in models/reps.json --out models/proc_proposals.jsonl
+claude-code @prompts/text_discover.md --in models/reps.json --out models/text_proposals.jsonl
+claude-code @prompts/context_agent.md --in models/reps.json --out models/context_proposals.jsonl
+claude-code @prompts/synthesizer.md --in models --out models/characters.jsonl
+claude-code @prompts/coder.md --in models/characters.jsonl --out output/matrices/{P,T,C}.csv
+claude-code @prompts/tree_builder.md --in output/matrices --out output/trees
+claude-code @prompts/qc_reporter.md --in output --out reports/qc.html
 ```
+
+### Command Map
+
+- StemmaBatch: `eggphy stemma-batch --in data/chunks --out models/stemma --manifest models/stemma_manifest.json --write-sh`
+- StemmaAgent: `claude-code @prompts/stemma_agent.md --in <chunk.csv> --out <out.json>`
+- Deduper: `claude-code @prompts/deduper.md --in data/merged_witnesses.csv --out models/dedupe_map.json`
+- RepSelector: `claude-code @prompts/rep_selector.md --in models/stemma --out models/reps.json`
+- ProcDiscover: `claude-code @prompts/proc_discover.md --in models/reps.json --out models/proc_proposals.jsonl`
+- TextDiscover: `claude-code @prompts/text_discover.md --in models/reps.json --out models/text_proposals.jsonl`
+- ContextAgent: `claude-code @prompts/context_agent.md --in models/reps.json --out models/context_proposals.jsonl`
+- Synthesizer: `claude-code @prompts/synthesizer.md --in models --out models/characters.jsonl`
+- Coder: `claude-code @prompts/coder.md --in models/characters.jsonl --out output/matrices`
+- MatrixBuilder: `claude-code @prompts/matrix_builder.md --in output/matrices --out output/matrices`
+- TreeBuilder: `claude-code @prompts/tree_builder.md --in output/matrices --out output/trees`
+- QCReporter: `claude-code @prompts/qc_reporter.md --in output --out reports/qc.html`
 
 ---
 
@@ -143,3 +160,26 @@ codex run qc --in output --out reports/qc.html
 4. Merge and code characters.
 5. Export matrices and trees.
 6. Compare stemma vs. procedural vs. textual topologies.
+
+---
+
+## Web Interface
+
+- Location: `web/index.html` (single-file UI; legacy pages removed)
+- Serve: `python -m src.eggphy.cli serve` → http://localhost:8000
+- API: `/api/witnesses` returns the web-friendly dataset derived from `data/witnesses.json`
+- Static: the server serves assets from `web/` (e.g., `/app.css`, `/app.js`, images)
+
+## Streamlined Data Layout
+
+- Canonical structured JSON (StemmaAgent schema): `data/witnesses.json`
+- Flat export for quick editing/viewing: `data/witnesses.csv`
+- Raw inputs: `data/raw_sources/witnesses_raw.csv`
+
+## Makefile Shortcuts
+
+- `make status` — show witness count
+- `make serve` — start the web UI
+- `make data-merge` — merge raw CSV with structured JSON, normalize, update web JSON
+- `make schema` — schema presence check on `data/witnesses.json`
+- `make scripts` — generate `scripts/phase1.sh` and `scripts/phase2.sh`

@@ -1,0 +1,211 @@
+[
+  {
+    "witness_id": "W44",
+    "date": 1996,
+    "author": "Deseret News",
+    "language": "eng",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W45",
+    "date": 2010,
+    "author": "The Calhoun Liberty Journal",
+    "language": "eng",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": false,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W46",
+    "date": 1887,
+    "author": "American Agriculturalist",
+    "language": "eng",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W47",
+    "date": 1775,
+    "author": "Johann Georg Kr\u00fcnitz",
+    "language": "deu",
+    "genre": "Encyclopaedia / General Reference",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W48",
+    "date": 1831,
+    "author": "Johann August Friedrich Schmidt",
+    "language": "deu",
+    "genre": "Popular Science",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W49",
+    "date": 1810,
+    "author": "Neue Jugen-Zeitung",
+    "language": "deu",
+    "genre": "Popular Science",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W50",
+    "date": 1839,
+    "author": "Martius, Johann Nicolaus and Poppe, Johann Heinrich Moritz von",
+    "language": "deu",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W51",
+    "date": 1837,
+    "author": "Fechner, Gustav Theodor",
+    "language": "deu",
+    "genre": "Agriculture / House Economy",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": false
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": false
+    }
+  },
+  {
+    "witness_id": "W52",
+    "date": 1556,
+    "author": "Girolamo Cardano",
+    "language": "fra",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W53",
+    "date": 1550,
+    "author": "Cardano, Girolamo",
+    "language": "lat",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  },
+  {
+    "witness_id": "W54",
+    "date": 1554,
+    "author": "Cardano, Girolamo",
+    "language": "lat",
+    "genre": "Natural Magic / Secrets Literature",
+    "attribution_africanus": false,
+    "ingredients": {
+      "galls_mentioned": true,
+      "alum_mentioned": true,
+      "vinegar_mentioned": true,
+      "wax_mentioned": true
+    },
+    "process": {
+      "boiling_mentioned": true,
+      "drying_mentioned": true,
+      "two_methods": true
+    }
+  }
+]
