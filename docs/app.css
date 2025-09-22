@@ -357,7 +357,8 @@ input[type="text"] { width: 260px; }
   font-size: 14px;
   color: var(--text);
   background: transparent;
-  padding: 6px 0;
+  /* Keep padding constant to avoid layout shift on hover/touch */
+  padding: 6px 8px;
   border-radius: 0;
   border: none;
   border-bottom: 1px solid var(--border);
@@ -370,7 +371,6 @@ input[type="text"] { width: 260px; }
 
 .filter-content .checkbox-item:hover {
   background: rgba(10,132,255,0.05);
-  padding: 6px 8px;
   border-radius: 6px;
 }
 
