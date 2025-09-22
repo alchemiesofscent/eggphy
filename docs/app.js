@@ -61,7 +61,8 @@
         function updateFilterCount(prefix) {
             const group = groupMap(prefix);
             const count = selected[group].size;
-            const countEl = document.getElementById(prefix + 'Count');
+            const idPrefixMap = { cent: 'century', lang: 'language' };
+            const countEl = document.getElementById((idPrefixMap[prefix] || prefix) + 'Count');
             if (countEl) {
                 countEl.textContent = count === 0 ? '(0 selected)' : `(${count} selected)`;
             }
@@ -79,15 +80,16 @@
             }
 
             // Also check from the detailed JSON structure if available
-            if (recipe.ingredients && recipe.ingredients.diagnostic_variants) {
-                if (recipe.ingredients.diagnostic_variants.gall_presence === 'present') {
+            const detailedIngredients = recipe.full_data && recipe.full_data.ingredients;
+            if (detailedIngredients && detailedIngredients.diagnostic_variants) {
+                if (detailedIngredients.diagnostic_variants.gall_presence === 'present') {
                     hasGalls = true;
                 }
             }
 
             // Check primary_components in detailed structure
-            if (recipe.ingredients && recipe.ingredients.primary_components) {
-                recipe.ingredients.primary_components.forEach(comp => {
+            if (detailedIngredients && Array.isArray(detailedIngredients.primary_components)) {
+                detailedIngredients.primary_components.forEach(comp => {
                     if (comp.substance && comp.substance.toLowerCase().includes('gall')) {
                         hasGalls = true;
                     }
@@ -109,7 +111,6 @@
         function setupFilterToggles() {
             document.querySelectorAll('.filter-toggle').forEach(toggle => {
                 const handleToggle = (e) => {
-                    // Don't prevent default for click events, only stop propagation
                     e.stopPropagation();
 
                     const targetId = toggle.getAttribute('data-target');
@@ -122,20 +123,28 @@
                         // Close all other filters
                         document.querySelectorAll('.filter-toggle').forEach(t => {
                             t.classList.remove('expanded');
+                            t.setAttribute('aria-expanded', 'false');
                         });
                         document.querySelectorAll('.filter-content').forEach(c => {
                             c.classList.remove('expanded');
+                            c.setAttribute('hidden', '');
                         });
 
                         // Toggle current filter
                         if (!isExpanded) {
                             toggle.classList.add('expanded');
+                            toggle.setAttribute('aria-expanded', 'true');
                             content.classList.add('expanded');
+                            content.removeAttribute('hidden');
+                        } else {
+                            toggle.classList.remove('expanded');
+                            toggle.setAttribute('aria-expanded', 'false');
+                            content.classList.remove('expanded');
+                            content.setAttribute('hidden', '');
                         }
                     }
                 };
 
-                // Use a single universal event listener
                 toggle.addEventListener('click', handleToggle);
             });
         }
@@ -148,35 +157,17 @@
             showDetails(nextId);
         }
 
-        function getEffectiveTheme() {
-            const attr = document.documentElement.getAttribute('data-theme');
-            if (attr === 'dark' || attr === 'light') return attr;
-            const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            return systemDark ? 'dark' : 'light';
-        }
-
         function initThemeAndFont() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            } else {
-                // no saved preference: respect system, no attribute
-                document.documentElement.removeAttribute('data-theme');
+            // Delegate theme setup to shared theme.js if available
+            if (typeof window.initTheme === 'function') {
+                window.initTheme();
             }
-            const effective = getEffectiveTheme();
-            const toggle = document.getElementById('themeToggle');
-            if (toggle) toggle.querySelector('use').setAttribute('href', effective === 'dark' ? '#icon-sun' : '#icon-moon');
+            if (typeof window.updateThemeToggleIcon === 'function') {
+                window.updateThemeToggleIcon();
+            }
+            // Apply saved font scale
             const savedScale = parseFloat(localStorage.getItem('fontScale') || '1');
             if (!isNaN(savedScale)) document.documentElement.style.setProperty('--font-scale', savedScale);
-        }
-
-        function toggleTheme() {
-            const effective = getEffectiveTheme();
-            const next = effective === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            const toggle = document.getElementById('themeToggle');
-            if (toggle) toggle.querySelector('use').setAttribute('href', next === 'dark' ? '#icon-sun' : '#icon-moon');
         }
 
         function adjustFont(delta) {
@@ -240,18 +231,6 @@
                     : undefined;
                 const v = (isFinite(a) && a > 0) ? a : (isFinite(b) ? b : 0);
 
-                // Debug for first few recipes
-                if (recipe.witness_id && ['W01', 'W02', 'W03'].includes(recipe.witness_id)) {
-                    console.log(`Confidence calc for ${recipe.witness_id}:`, {
-                        recipe_confidence: a,
-                        analysis_confidence: b,
-                        final_value: v,
-                        isFinite_v: isFinite(v),
-                        has_full_data: !!recipe.full_data,
-                        has_analysis_confidence: !!(recipe.full_data && recipe.full_data.analysis_confidence)
-                    });
-                }
-
                 if (!isFinite(v)) return 0;
                 return Math.min(Math.max(v, 0), 1);
             } catch (err) {
@@ -291,14 +270,10 @@
             try {
                 // Load from GitHub Pages data
                 const dataUrl = new URL('data/witnesses.json', window.location.href).href;
-                console.log('Attempting to load data from:', dataUrl);
                 const response = await fetch('data/witnesses.json');
-                console.log('Response status:', response.status);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('Loaded data:', data.length, 'recipes');
                     recipes = transformDataForWeb(data);
-                    console.log('Transformed recipes:', recipes.length);
                     return;
                 } else {
                     console.error('Response not ok:', response.status, response.statusText);
@@ -342,16 +317,6 @@
                     attribution: item.attribution || 'unknown',
                     full_data: item // Keep full data for detailed analysis
                 };
-
-                // Debug confidence values for first few items
-                if (data.indexOf(item) < 3) {
-                    console.log(`Recipe ${transformed.witness_id}:`, {
-                        raw_confidence: item.confidence,
-                        transformed_confidence: transformed.confidence,
-                        has_analysis_confidence: !!item.analysis_confidence,
-                        overall_confidence: item.analysis_confidence?.overall_confidence
-                    });
-                }
 
                 return transformed;
             });
@@ -407,8 +372,7 @@
             const dec = document.getElementById('fontDec');
             if (inc) inc.addEventListener('click', () => adjustFont(0.1));
             if (dec) dec.addEventListener('click', () => adjustFont(-0.1));
-            const theme = document.getElementById('themeToggle');
-            if (theme) theme.addEventListener('click', toggleTheme);
+            // Theme toggle is handled by theme.js (setupThemeToggle)
             const resetBtn = document.getElementById('resetFilters');
             if (resetBtn) resetBtn.addEventListener('click', resetAllFilters);
 
@@ -457,9 +421,11 @@
             // Close all expanded filters
             document.querySelectorAll('.filter-toggle').forEach(t => {
                 t.classList.remove('expanded');
+                t.setAttribute('aria-expanded', 'false');
             });
             document.querySelectorAll('.filter-content').forEach(c => {
                 c.classList.remove('expanded');
+                c.setAttribute('hidden', '');
             });
 
             // Apply filters to show all results
@@ -555,16 +521,6 @@
                 const conf = getOverallConfidence(recipe);
                 const hasConf = hasConfidenceData(recipe);
                 const ing = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
-
-                // Debug first few recipes
-                if (['W01', 'W02', 'W03'].includes(recipe.witness_id)) {
-                    console.log(`Display ${recipe.witness_id}:`, {
-                        conf,
-                        hasConf,
-                        confPercent: hasConf ? (conf * 100).toFixed(0) : 'n/a',
-                        confWidth: hasConf ? (conf * 100) : 0
-                    });
-                }
                 return `
                 <a href="recipe.html?id=${recipe.witness_id}&from=database" class="recipe-card recipe-card-link">
                     <div class="recipe-header">
@@ -584,6 +540,9 @@
             `}).join('');
         }
 
+        let _modalFocusTrapCleanup = null;
+        let _modalLastFocused = null;
+
         function showDetails(witnessId) {
             const recipe = recipes.find(r => r.witness_id === witnessId);
             if (!recipe) return;
@@ -595,7 +554,7 @@
             // helpers for plain-language rendering (defined top-level)
 
             let modalContent = `
-                <h2>${recipe.witness_id}: ${recipe.source_work}
+                <h2 id="recipeModalTitle">${recipe.witness_id}: ${recipe.source_work}
                     <span class="language-badge">${recipe.language}</span>
                 </h2>
 
@@ -802,6 +761,9 @@
 
             modalBody.innerHTML = modalContent;
             modal.style.display = 'block';
+            // Focus trap
+            _modalLastFocused = document.activeElement;
+            _modalFocusTrapCleanup = enableFocusTrap(modal);
         }
 
         function toggleCollapsible(element) {
@@ -815,14 +777,53 @@
         }
 
         function closeModal() {
-            document.getElementById('recipeModal').style.display = 'none';
+            const modal = document.getElementById('recipeModal');
+            modal.style.display = 'none';
+            if (typeof _modalFocusTrapCleanup === 'function') {
+                _modalFocusTrapCleanup();
+                _modalFocusTrapCleanup = null;
+            }
+            if (_modalLastFocused && _modalLastFocused.focus) {
+                _modalLastFocused.focus();
+            }
         }
 
-        window.onclick = function(event) {
+        window.addEventListener('click', (event) => {
             const modal = document.getElementById('recipeModal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
+        });
+
+        // Focus trap utility for modal dialogs
+        function enableFocusTrap(container) {
+            const selectors = [
+                'a[href]', 'button:not([disabled])', 'textarea', 'input', 'select', '[tabindex]:not([tabindex="-1"])'
+            ];
+            const getFocusable = () => Array.from(container.querySelectorAll(selectors.join(',')))
+                .filter(el => el.offsetParent !== null);
+            const focusables = getFocusable();
+            if (focusables.length) {
+                focusables[0].focus();
+            } else {
+                container.focus({ preventScroll: true });
+            }
+            const handler = (e) => {
+                if (e.key !== 'Tab') return;
+                const items = getFocusable();
+                if (!items.length) return;
+                const first = items[0];
+                const last = items[items.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            };
+            container.addEventListener('keydown', handler);
+            return () => container.removeEventListener('keydown', handler);
         }
 
         // Mobile filter toggle functionality

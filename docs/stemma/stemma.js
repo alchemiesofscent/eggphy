@@ -14,12 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let witnessData = [];
     try {
         const dataUrl = new URL('../data/witnesses.json', window.location.href).href;
-        console.log('Stemma Family View: Attempting to load data from:', dataUrl);
         const response = await fetch('../data/witnesses.json');
-        console.log('Stemma Family View: Response status:', response.status);
         if (response.ok) {
             witnessData = await response.json();
-            console.log('Stemma Family View: Successfully loaded', witnessData.length, 'witnesses');
         } else {
             console.error('Stemma Family View: Failed to load witness data:', response.status, response.statusText);
             // Fallback to empty array
@@ -39,56 +36,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Function to classify a witness into a family based on our refined stemma logic
-    function classifyWitness(witness) {
-        const id = witness.metadata?.witness_id;
-        const ingredients = witness.ingredients?.diagnostic_variants;
-        const process = witness.process_steps?.critical_variants;
-
-        if (!id || !ingredients || !process) {
-            return 'E_Meta'; // Incomplete data goes to outliers
-        }
-
-        // --- Handle Outliers and Unique Branches First ---
-
-        // Family E: Meta-Witnesses & Outliers (commentary, different chemistry, etc.)
-        if (['W23', 'W27', 'W37', 'W74', 'W87'].includes(id)) return 'E_Meta';
-
-        // Family F: The entire "Boil-Then-Write" tradition is a major anomaly.
-        if (process.boiling_timing === 'before_writing') return 'F_Anomalous';
-
-        // Family G: Cépak (W57) is the unique witness that quantifies the long-soak tradition.
-        if (id === 'W57') return 'G_Cepak';
-
-        // --- Classify the Main Evolutionary Lineages ---
-
-        // Family D: The 'Salt-Water-Boil' Lineage
-        const hasSaltWaterBoil = witness.process_steps?.preparation_sequence?.some(s =>
-            s.details && (s.details.toLowerCase().includes('salt water') || s.details.toLowerCase().includes('salzwasser'))
-        ) || false;
-
-        if (ingredients.gall_presence === 'present' && process.soaking_duration !== 'days' && hasSaltWaterBoil) {
-            return 'D_SaltWaterBoil';
-        }
-
-        // Family B: The 'Long-Soak' Lineage
-        if (ingredients.gall_presence === 'absent' && process.soaking_duration === 'days') {
-            return 'B_LongSoak';
-        }
-
-        // Family C: The 'Modern Baby' (Recombination)
-        if (ingredients.gall_presence === 'absent' && process.soaking_duration !== 'days') {
-            return 'C_Modern';
-        }
-
-        // Family A: Classical & Renaissance Tradition (The remaining gall-ink recipes)
-        if (ingredients.gall_presence === 'present') {
-            return 'A_Classical';
-        }
-
-        // Default catch-all for anything missed
-        return 'E_Meta';
-    }
+    // Use shared classifier to keep logic unified
+    const classifyWitness = (w) => (window._classifyRecipe && window._classifyRecipe(w)) || 'E_Meta';
 
     // --- Main Application Logic (Unchanged from before) ---
 

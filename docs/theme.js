@@ -26,6 +26,10 @@ function updateThemeToggleIcon() {
         if (useElement) {
             useElement.setAttribute('href', effective === 'dark' ? '#icon-sun' : '#icon-moon');
         }
+        // Update toggle state semantics
+        const isDark = effective === 'dark';
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
     }
 }
 

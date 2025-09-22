@@ -120,7 +120,7 @@
 }
 
 .error-container p {
-    color: var(--text-muted);
+    color: var(--muted);
     margin-bottom: 24px;
 }
 
@@ -154,7 +154,7 @@
     gap: 12px;
     margin-bottom: 20px;
     font-size: 1rem;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
 .meta-separator {
@@ -180,7 +180,7 @@
 }
 
 .confidence-badge {
-    background: var(--text-muted);
+    background: var(--muted);
 }
 
 /* Content Grid */
@@ -246,7 +246,7 @@
 }
 
 .detail-row span, .detail-row a {
-    color: var(--text-muted);
+    color: var(--muted);
     line-height: 1.5;
 }
 
@@ -330,7 +330,7 @@
 }
 
 .family-details p {
-    color: var(--text-muted);
+    color: var(--muted);
     font-size: 0.9rem;
     margin: 0;
 }
@@ -385,7 +385,7 @@
 .confidence-details {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
 .confidence-details p {
@@ -451,7 +451,7 @@
 
 .step-content p {
     margin: 4px 0 0;
-    color: var(--text-muted);
+    color: var(--muted);
     font-size: 0.85rem;
     line-height: 1.4;
 }
@@ -480,7 +480,7 @@
 }
 
 .variant-item span {
-    color: var(--text-muted);
+    color: var(--muted);
     font-size: 0.85rem;
     text-transform: capitalize;
 }
@@ -620,7 +620,7 @@
 
 .related-id {
     font-weight: 600;
-    color: var(--text-muted);
+    color: var(--muted);
     font-size: 0.85rem;
 }
 
@@ -648,7 +648,7 @@
     display: flex;
     gap: 8px;
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: var(--muted);
 }
 
 .related-meta span:not(:last-child)::after {
@@ -712,7 +712,7 @@
 
 .nav-text small {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--muted);
     font-weight: 400;
 }
 

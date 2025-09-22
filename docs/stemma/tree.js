@@ -4,12 +4,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     let witnessData = [];
     try {
         const dataUrl = new URL('../data/witnesses.json', window.location.href).href;
-        console.log('Stemma: Attempting to load data from:', dataUrl);
         const response = await fetch('../data/witnesses.json');
-        console.log('Stemma: Response status:', response.status);
         if (response.ok) {
             witnessData = await response.json();
-            console.log('Stemma: Successfully loaded', witnessData.length, 'witnesses');
         } else {
             console.error('Stemma: Failed to load witness data:', response.status, response.statusText);
             witnessData = [];
@@ -18,11 +15,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Stemma: Error loading witness data:', error);
         // Try alternative path
         try {
-            console.log('Stemma: Trying alternative path: data/witnesses.json');
             const altResponse = await fetch('data/witnesses.json');
             if (altResponse.ok) {
                 witnessData = await altResponse.json();
-                console.log('Stemma: Alternative path successful, loaded', witnessData.length, 'witnesses');
             } else {
                 console.error('Stemma: Alternative path also failed:', altResponse.status);
             }
@@ -33,40 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Function to classify a witness into a family (same as original stemma)
-    function classifyWitness(witness) {
-        const id = witness.metadata?.witness_id;
-        const ingredients = witness.ingredients?.diagnostic_variants;
-        const process = witness.process_steps?.critical_variants;
-
-        if (!id || !ingredients || !process) {
-            return 'E_Meta';
-        }
-
-        // Handle outliers first
-        if (['W23', 'W27', 'W37', 'W74', 'W87'].includes(id)) return 'E_Meta';
-        if (process.boiling_timing === 'before_writing') return 'F_Anomalous';
-        if (id === 'W57') return 'G_Cepak';
-
-        // Main classifications
-        const hasSaltWaterBoil = witness.process_steps?.preparation_sequence?.some(s =>
-            s.details && (s.details.toLowerCase().includes('salt water') || s.details.toLowerCase().includes('salzwasser'))
-        ) || false;
-
-        if (ingredients.gall_presence === 'present' && process.soaking_duration !== 'days' && hasSaltWaterBoil) {
-            return 'D_SaltWaterBoil';
-        }
-        if (ingredients.gall_presence === 'absent' && process.soaking_duration === 'days') {
-            return 'B_LongSoak';
-        }
-        if (ingredients.gall_presence === 'absent' && process.soaking_duration !== 'days') {
-            return 'C_Modern';
-        }
-        if (ingredients.gall_presence === 'present') {
-            return 'A_Classical';
-        }
-
-        return 'E_Meta';
-    }
+    const classifyWitness = (w) => (window._classifyRecipe && window._classifyRecipe(w)) || 'E_Meta';
 
     // Group witnesses by family
     const familyGroups = {
@@ -586,7 +548,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Add some demo data if no real data is loaded
     if (witnessData.length === 0) {
-        console.warn('No witness data loaded, adding demo data for visualization');
 
         // Create some demo witnesses for visualization
         const demoWitnesses = [

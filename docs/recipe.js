@@ -85,7 +85,7 @@ async function loadRecipeData() {
         const response = await fetch('data/witnesses.json');
         if (response.ok) {
             allRecipes = await response.json();
-            console.log(`Loaded ${allRecipes.length} recipes for recipe page`);
+            
         } else {
             throw new Error(`Failed to load data: ${response.status}`);
         }
@@ -168,7 +168,7 @@ function updatePageMetadata() {
 
     // Update page title and meta tags
     document.title = title;
-    document.getElementById('page-title').content = title;
+    document.getElementById('page-title').textContent = title;
     document.getElementById('page-description').content = description;
     document.getElementById('page-keywords').content = `${meta.witness_id}, ${meta.author}, ${meta.language}, historical recipes, digital humanities, stemmatology`;
 
@@ -511,38 +511,8 @@ function showError(message) {
 
 // Helper functions (from the main app)
 function classifyRecipe(recipe) {
-    const id = recipe.metadata?.witness_id;
-    const ingredients = recipe.ingredients?.diagnostic_variants;
-    const process = recipe.process_steps?.critical_variants;
-
-    if (!id || !ingredients || !process) {
-        return 'E_Meta';
-    }
-
-    // Handle outliers first
-    if (['W23', 'W27', 'W37', 'W74', 'W87'].includes(id)) return 'E_Meta';
-    if (process.boiling_timing === 'before_writing') return 'F_Anomalous';
-    if (id === 'W57') return 'G_Cepak';
-
-    // Main classifications
-    const hasSaltWaterBoil = recipe.process_steps?.preparation_sequence?.some(s =>
-        s.details && (s.details.toLowerCase().includes('salt water') || s.details.toLowerCase().includes('salzwasser'))
-    ) || false;
-
-    if (ingredients.gall_presence === 'present' && process.soaking_duration !== 'days' && hasSaltWaterBoil) {
-        return 'D_SaltWaterBoil';
-    }
-    if (ingredients.gall_presence === 'absent' && process.soaking_duration === 'days') {
-        return 'B_LongSoak';
-    }
-    if (ingredients.gall_presence === 'absent' && process.soaking_duration !== 'days') {
-        return 'C_Modern';
-    }
-    if (ingredients.gall_presence === 'present') {
-        return 'A_Classical';
-    }
-
-    return 'E_Meta';
+    // Delegate to shared classifier to keep logic unified
+    return (window._classifyRecipe && window._classifyRecipe(recipe)) || 'E_Meta';
 }
 
 function updateSEOMeta() {

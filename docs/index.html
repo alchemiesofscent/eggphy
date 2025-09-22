@@ -23,9 +23,9 @@
                         </svg>
                         Stemma
                     </a>
-                    <button id="themeToggle" class="btn" title="Toggle theme"><svg class="btn-icon"><use href="#icon-sun"/></svg></button>
-                    <button id="fontDec" class="btn" title="Smaller font"><svg class="btn-icon"><use href="#icon-minus"/></svg></button>
-                    <button id="fontInc" class="btn" title="Larger font"><svg class="btn-icon"><use href="#icon-plus"/></svg></button>
+                    <button id="themeToggle" class="btn" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme"><svg class="btn-icon" aria-hidden="true"><use href="#icon-sun"/></svg></button>
+                    <button id="fontDec" class="btn" aria-label="Decrease font size" title="Smaller font"><svg class="btn-icon" aria-hidden="true"><use href="#icon-minus"/></svg></button>
+                    <button id="fontInc" class="btn" aria-label="Increase font size" title="Larger font"><svg class="btn-icon" aria-hidden="true"><use href="#icon-plus"/></svg></button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="layout">
-            <aside class="sidebar" id="filterSidebar">
+            <aside class="sidebar" id="filterSidebar" aria-label="Filters">
                 <div class="controls">
                     <div class="control-group">
                         <label>Search</label>
@@ -73,133 +73,133 @@
                         </button>
                     </div>
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="centuryList">
+                        <button class="filter-toggle" id="centuryToggle" data-target="centuryList" aria-controls="centuryContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Centuries</span>
-                                <span class="filter-count" id="centuryCount">(0 selected)</span>
+                                <span class="filter-count" id="centuryCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="centuryContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="centuryContent" hidden>
                             <div id="centuryList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="languageList">
+                        <button class="filter-toggle" id="languageToggle" data-target="languageList" aria-controls="languageContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Languages</span>
                                 <span class="filter-count" id="languageCount">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="languageContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="languageContent" hidden>
                             <div id="languageList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="genreList">
+                        <button class="filter-toggle" id="genreToggle" data-target="genreList" aria-controls="genreContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Genres</span>
-                                <span class="filter-count" id="genreCount">(0 selected)</span>
+                                <span class="filter-count" id="genreCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="genreContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="genreContent" hidden>
                             <div id="genreList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="ingredientFamilyList">
+                        <button class="filter-toggle" id="ingredientFamilyToggle" data-target="ingredientFamilyList" aria-controls="ingredientFamilyContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Ingredient Family</span>
-                                <span class="filter-count" id="ingredientFamilyCount">(0 selected)</span>
+                                <span class="filter-count" id="ingredientFamilyCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="ingredientFamilyContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="ingredientFamilyContent" hidden>
                             <div id="ingredientFamilyList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="ingredientList">
+                        <button class="filter-toggle" id="ingredientToggle" data-target="ingredientList" aria-controls="ingredientContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Ingredients</span>
-                                <span class="filter-count" id="ingredientCount">(0 selected)</span>
+                                <span class="filter-count" id="ingredientCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="ingredientContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="ingredientContent" hidden>
                             <div id="ingredientList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <!-- Critical variant filters (plain-English display; values use underlying codes) -->
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="boilList">
+                        <button class="filter-toggle" id="boilToggle" data-target="boilList" aria-controls="boilContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Boiling Timing</span>
-                                <span class="filter-count" id="boilCount">(0 selected)</span>
+                                <span class="filter-count" id="boilCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="boilContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="boilContent" hidden>
                             <div id="boilList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="dryList">
+                        <button class="filter-toggle" id="dryToggle" data-target="dryList" aria-controls="dryContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Drying Method</span>
-                                <span class="filter-count" id="dryCount">(0 selected)</span>
+                                <span class="filter-count" id="dryCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="dryContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="dryContent" hidden>
                             <div id="dryList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="soakMediumList">
+                        <button class="filter-toggle" id="soakMediumToggle" data-target="soakMediumList" aria-controls="soakMediumContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Soaking Medium</span>
-                                <span class="filter-count" id="soakMediumCount">(0 selected)</span>
+                                <span class="filter-count" id="soakMediumCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="soakMediumContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="soakMediumContent" hidden>
                             <div id="soakMediumList" class="checkbox-list"></div>
                         </div>
                     </div>
 
                     <div class="filter-section">
-                        <div class="filter-toggle" data-target="soakDurationList">
+                        <button class="filter-toggle" id="soakDurationToggle" data-target="soakDurationList" aria-controls="soakDurationContent" aria-expanded="false">
                             <div>
                                 <span class="filter-toggle-text">Soaking Duration</span>
-                                <span class="filter-count" id="soakDurationCount">(0 selected)</span>
+                                <span class="filter-count" id="soakDurationCount" aria-live="polite">(0 selected)</span>
                             </div>
-                            <span class="filter-arrow">▼</span>
-                        </div>
-                        <div class="filter-content" id="soakDurationContent">
+                            <span class="filter-arrow" aria-hidden="true">▼</span>
+                        </button>
+                        <div class="filter-content" id="soakDurationContent" hidden>
                             <div id="soakDurationList" class="checkbox-list"></div>
                         </div>
                     </div>
                 </div>
             </aside>
             <main class="main">
-                <div class="stats" id="stats">Showing: <span id="resultCount">0</span> recipes</div>
+                <div class="stats" id="stats" aria-live="polite">Showing: <span id="resultCount">0</span> recipes</div>
                 <div class="recipe-grid" id="recipeGrid"></div>
             </main>
         </div>
 
-        <div id="recipeModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="recipeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="recipeModalTitle" aria-describedby="modalBody">
+            <div class="modal-content" role="document">
+                <button type="button" class="close-btn" aria-label="Close dialog" onclick="closeModal()">&times;</button>
                 <div id="modalBody"></div>
             </div>
         </div>
@@ -215,6 +215,7 @@
         <symbol id="icon-right" viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></symbol>
     </svg>
 
+    <script src="theme.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -16,8 +16,8 @@
         <nav>
             <a href="stemma.html" class="nav-link">← Family View</a>
             <a href="../index.html" class="nav-link">Recipe Explorer</a>
-            <button id="themeToggle" class="nav-btn" title="Toggle theme">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button id="themeToggle" class="nav-btn" aria-label="Toggle theme" aria-pressed="false" title="Toggle theme">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <use href="#icon-sun"/>
                 </svg>
             </button>
@@ -129,6 +129,7 @@
         <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.742 13.045A8 8 0 1111 3a9 9 0 109.742 10.045z"/></symbol>
     </svg>
 
+    <script src="../js/classify.js"></script>
     <script src="../theme.js"></script>
     <script src="tree.js"></script>
 </body>
